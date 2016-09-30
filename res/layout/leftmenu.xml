@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="Click_zc"
+        android:orientation="horizontal"
+        android:paddingTop="35dp" >
+
+        <com.jk.ZDYImgview.XCRoundImageView
+            android:id="@+id/img_zc"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true" 
+            android:src="@drawable/zc"/>
+
+        <TextView
+            android:id="@+id/tv_zc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="支出管理" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="Click_sr"
+        android:orientation="horizontal"
+        android:paddingTop="35dp" >
+
+        
+        <com.jk.ZDYImgview.XCRoundImageView
+            android:id="@+id/img_sr"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/sr" 
+             />
+
+        <TextView
+            android:id="@+id/tv_sr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="收入管理" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="Click_bq"
+        android:orientation="horizontal"
+        android:paddingTop="35dp" >
+
+        <com.jk.ZDYImgview.XCRoundImageView
+            android:id="@+id/img_bq"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/bq" 
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/tv_bq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="便签管理" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="Click_xtsz"
+        android:orientation="horizontal"
+        android:paddingTop="35dp" >
+
+        <com.jk.ZDYImgview.XCRoundImageView
+            android:id="@+id/img_xt"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/xt" 
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/tv_xtsz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="系统设置" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="Click_tc"
+        android:orientation="horizontal"
+        android:paddingTop="35dp" >
+
+        <com.jk.ZDYImgview.XCRoundImageView
+            android:id="@+id/img_tc"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/tc" 
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/tv_tc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="退出" />
+    </LinearLayout>
+
+</LinearLayout>
