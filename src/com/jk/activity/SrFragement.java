@@ -46,7 +46,7 @@ public class SrFragement extends Fragment {
 	private void initView(LayoutInflater inflater, ViewGroup container) {
 		mView = inflater.inflate(R.layout.zc, container, false);
 		lv_show = (ListView) mView.findViewById(R.id.lv_show);
-		lv_show.getBackground().setAlpha(100);
+		
 
 		data = getData();
 		MyAdapter adapter = new MyAdapter(getActivity());
