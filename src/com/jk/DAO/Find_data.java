@@ -51,7 +51,7 @@ public class Find_data {
 						new String[] { String.valueOf(id) });
 		if (cursor.moveToNext()) {
 			return new Tb_outaccount((cursor.getColumnIndex("_id")),
-					cursor.getDouble(cursor.getColumnIndex("money")),
+					cursor.getString(cursor.getColumnIndex("money")),
 					cursor.getString(cursor.getColumnIndex("time")),
 					cursor.getString(cursor.getColumnIndex("type")),
 					cursor.getString(cursor.getColumnIndex("mark"))					

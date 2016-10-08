@@ -19,10 +19,10 @@ public class DBHelper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		db.execSQL("create table tb_use (users varchar(20),pwd varchar(20))");
 		db.execSQL("create table tb_inaccount" +
-				"(_id integer primary key, money decimal,time varchar(10),type varchar(10),handler varchar(100),mark varchar(200))");
+				"(_id integer primary key autoincrement, money decimal,time varchar(10),type varchar(10),handler varchar(100),mark varchar(200))");
 		db.execSQL("create table tb_outaccount" +
-				"(_id integer primary key, money decimal,time varchar(10),type varchar(10),mark varchar(200))");
-		db.execSQL("create table tb_flag(_id integer primary key,flag varchar(200))");
+				"(_id integer primary key autoincrement, money decimal,time varchar(10),type varchar(10),mark varchar(200))");
+		db.execSQL("create table tb_flag(_id integer primary key autoincrement,flag varchar(200))");
 	}
 	@Override
 	//更新版本

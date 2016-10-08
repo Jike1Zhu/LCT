@@ -8,7 +8,7 @@ public class Add_data {
 	private DBHelper helper;
 
 	public  Add_data(Context context){
-		helper = new DBHelper(context, null, 0);
+		helper = new DBHelper(context, "LCTDB", 0);
 	}
 	
 	/**
@@ -16,16 +16,15 @@ public class Add_data {
 	 * 
 	 * @param tb_inaccount
 	 */
-	private void inadd(Tb_inaccount tb_inaccount) {
+	public void inadd(Tb_inaccount tb_inaccount) {
 		// TODO Auto-generated method stub
 		DB = helper.getWritableDatabase();
-		DB.execSQL("insert into tb_inaccount (_id," +
-											"money," + 
+		DB.execSQL("insert into tb_inaccount (money," + 
 											"time,"+
 											"type," + 
 											"handler," + 
 											"mark) values (?,?,?,?,?,?)",
-				new Object[] { tb_inaccount.getid(), 
+				new Object[] { 
 								tb_inaccount.getMoney(),
 								tb_inaccount.getTime(), 
 								tb_inaccount.getType(),
@@ -38,15 +37,14 @@ public class Add_data {
 	 * 
 	 * @param tb_outaccount
 	 */
-	private void outadd(Tb_outaccount tb_outaccount) {
+	public void outadd(Tb_outaccount tb_outaccount) {
 		// TODO Auto-generated method stub
 		DB = helper.getWritableDatabase();
-		DB.execSQL("insert into tb_outaccount (_id," +
-											"money," + 
+		DB.execSQL("insert into tb_outaccount (money," + 
 											"time,"+ 
 											"type," + 
-											"mark) values (?,?,?,?,?)",
-				new Object[] { tb_outaccount.getid(), 
+											"mark) values (?,?,?,?)",
+				new Object[] {
 								tb_outaccount.getMoney(),
 								tb_outaccount.getTime(), 
 								tb_outaccount.getType(),
@@ -58,7 +56,7 @@ public class Add_data {
 	 * 
 	 * @param tb_pwd
 	 */
-	private void pwdadd(Tb_pwd tb_pwd) {
+	public void pwdadd(Tb_pwd tb_pwd) {
 		// TODO Auto-generated method stub
 		DB = helper.getWritableDatabase();
 		DB.execSQL("insert into tb_pwd (pwd) values (?)",
@@ -69,7 +67,7 @@ public class Add_data {
 	 * 
 	 * @param tb_flag
 	 */
-	private void flagadd(Tb_flag tb_flag) {
+	public void flagadd(Tb_flag tb_flag) {
 		// TODO Auto-generated method stub
 		DB = helper.getWritableDatabase();
 		DB.execSQL("insert into tb_flag (_id,flag) values (?,?)",

@@ -2,16 +2,20 @@ package com.jk.DAO;
 
 public class Tb_outaccount {
 	 private	 int _id ;
-	 private double money;
+	 private String money;
 	 private String time;
 	 private String type;
 	 private String mark;
-	public  Tb_outaccount(int id,double money,String time,String type,String mark) {
+	public  Tb_outaccount(int id,String money,String time,String type,String mark) {
 		this._id = id;
 		this.money = money;
 		this.time  = time;
 		this.type =type;
 		this.mark =mark;
+	}
+	
+	public  Tb_outaccount() {
+		
 	}
 
 
@@ -28,13 +32,13 @@ public class Tb_outaccount {
 
 
 
-	public double getMoney() {
+	public String getMoney() {
 		return money;
 	}
 
 
 
-	public void setMoney(double money) {
+	public void setMoney(String money) {
 		this.money = money;
 	}
 

@@ -28,6 +28,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jk.DAO.Add_data;
 import com.patrickstar.slidingmenudemo.R;
 
 public class ZcFragement extends Fragment {
@@ -38,6 +39,8 @@ public class ZcFragement extends Fragment {
 	private List<Map<String, Object>> data;
 	private TextView tv_rqsj;
 	private int position;
+	private Button btn_bc;
+	private Button zcbc;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,13 +56,14 @@ public class ZcFragement extends Fragment {
 	private void initView(LayoutInflater inflater, ViewGroup container) {
 		mView = inflater.inflate(R.layout.zc, container, false);
 		lv_show = (ListView) mView.findViewById(R.id.lv_show);
-		
-
+		btn_tj = (Button) mView.findViewById(R.id.btn_tj);
+		btn_tj.setVisibility(1);
 		data = getData();
 		MyAdapter adapter = new MyAdapter(getActivity());
 		lv_show.setAdapter(adapter);
 
 		lv_show.setOnCreateContextMenuListener(this);
+		
 
 	}
 
