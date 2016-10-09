@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="收支管理"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LL_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="30dp" >
+
+            <TextView
+                android:id="@+id/je"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:text="金额" />
+
+            <EditText
+                android:id="@+id/edit_srje"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:background="@android:drawable/edit_text"
+                android:inputType="textMultiLine" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LL_2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/sj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:text="时间" />
+
+            <EditText
+                android:id="@+id/et_rqsj"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:background="@android:drawable/edit_text"
+                android:inputType="textMultiLine" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LL_3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignBottom="@id/LL_2"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/lx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:text="类型" />
+
+            <Spinner                
+                android:id="@+id/Spinner01"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" >
+            </Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LL_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/LL_3"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/bz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:text="备注" />
+
+            <EditText
+                android:id="@+id/et_bz"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/edit_text"
+                android:enabled="true"
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                android:minLines="3"
+                android:scrollbars="vertical" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:paddingTop="30dp" >
+
+            <Button
+                android:id="@+id/qx"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="取消" />
+
+            <Button
+                android:id="@+id/bc"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="保存" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.jk.activity.Bj_Xz_info" >
+        <activity android:name="com.jk.activity.Xz_info_activity" >
         </activity>
     </application>
 

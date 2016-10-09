@@ -6,19 +6,10 @@
       
       <ListView android:id="@+id/lv_show"
           android:layout_width="match_parent"
-          android:layout_height="500dp"
+          android:layout_height="match_parent"
          >
-          
-          
-          
+      
       </ListView>
   	
-  	<Button
-          android:id="@+id/btn_tj"
-          android:layout_width="fill_parent"
-          android:layout_height="60dp"
-          android:layout_gravity="bottom"
-          android:text="添加"
-          android:visibility="invisible"
-         />
+  	
   </LinearLayout>

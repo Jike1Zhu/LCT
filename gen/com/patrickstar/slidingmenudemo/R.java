@@ -41,9 +41,8 @@ public final class R {
         public static final int LL_3=0x7f080007;
         public static final int LL_4=0x7f08000a;
         public static final int Spinner01=0x7f080009;
-        public static final int action_settings=0x7f080021;
+        public static final int action_settings=0x7f080020;
         public static final int bc=0x7f08000e;
-        public static final int btn_tj=0x7f080020;
         public static final int bz=0x7f08000b;
         public static final int date_picker=0x7f080010;
         public static final int edit_srje=0x7f080003;
@@ -56,6 +55,7 @@ public final class R {
         public static final int img_tc=0x7f08001a;
         public static final int img_xt=0x7f080018;
         public static final int img_zc=0x7f080012;
+        public static final int item1=0x7f080021;
         public static final int je=0x7f080002;
         public static final int lv_show=0x7f08001f;
         public static final int lx=0x7f080008;
@@ -79,12 +79,13 @@ public final class R {
         public static final int leftmenu=0x7f030004;
         public static final int list_item=0x7f030005;
         public static final int sr=0x7f030006;
-        public static final int top=0x7f030007;
-        public static final int xtsz=0x7f030008;
+        public static final int xtsz=0x7f030007;
+        public static final int xz_info=0x7f030008;
         public static final int zc=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f070000;
+        public static final int menu1=0x7f070001;
     }
     public static final class string {
         public static final int action_settings=0x7f050002;

@@ -29,6 +29,8 @@ public class OutaccountDAO {
         db.execSQL("insert into tb_outaccount (_id,money,time,type,address,mark) values (?,?,?,?,?,?)",
                 new Object[] { tb_outaccount.getid(), tb_outaccount.getMoney(), tb_outaccount.getTime(), tb_outaccount.getType(), tb_outaccount.getAddress(),
                         tb_outaccount.getMark() });
+        
+        db.close();
     }
 
     /**
@@ -41,6 +43,8 @@ public class OutaccountDAO {
            
         db.execSQL("update tb_outaccount set money = ?,time = ?,type = ?,address = ?,mark = ? where _id = ?", new Object[] { tb_outaccount.getMoney(),
                 tb_outaccount.getTime(), tb_outaccount.getType(), tb_outaccount.getAddress(), tb_outaccount.getMark(), tb_outaccount.getid() });
+      
+        db.close();
     }
 
     /**
@@ -59,7 +63,10 @@ public class OutaccountDAO {
                     .getColumnIndex("time")), cursor.getString(cursor.getColumnIndex("type")), cursor.getString(cursor.getColumnIndex("address")),
                     cursor.getString(cursor.getColumnIndex("mark")));
         }
+        cursor.close();
+        db.close();
         return null;
+        
     }
 
     /**
@@ -81,7 +88,20 @@ public class OutaccountDAO {
             db.execSQL("delete from tb_outaccount where _id in (" + sb + ")", (Object[]) ids);
         }
     }
-
+    /**
+	 * 删除单条数据
+	 * @param id
+	 */
+	public void deleteById(String id){
+		//1. 得到连接
+		db = helper.getWritableDatabase(); 
+		//2. 执行delete delete from black_number where _id=id
+		db.execSQL("delete from tb_outaccount where _id =" + id + "");
+		//int deleteCount = database.delete("tb_outaccount", "_id=?", new String[]{id+""});
+		//Log.i("TAG", "deleteCount="+deleteCount);
+		//3. 关闭
+		db.close();
+	}
     /**
      *    ֧     
      * 
@@ -103,6 +123,8 @@ public class OutaccountDAO {
                     .getString(cursor.getColumnIndex("time")), cursor.getString(cursor.getColumnIndex("type")), cursor.getString(cursor
                     .getColumnIndex("address")), cursor.getString(cursor.getColumnIndex("mark"))));
         }
+        cursor.close();
+        db.close();
         return tb_outaccount;
     }
 
@@ -118,6 +140,8 @@ public class OutaccountDAO {
 
             return cursor.getLong(0);
         }
+        cursor.close();
+        db.close();
         return 0;            
     }
 
@@ -132,6 +156,8 @@ public class OutaccountDAO {
         while (cursor.moveToLast()) {     
             return cursor.getInt(0);              
         }
+        cursor.close();
+        db.close();
         return 0;
     }
 }
