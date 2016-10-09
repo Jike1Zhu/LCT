@@ -17,9 +17,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
-import com.jk.DAO.Add_data;
-import com.jk.DAO.Tb_outaccount;
+import com.jk.dao.OutaccountDAO;
+import com.jk.model.Tb_outaccount;
 import com.patrickstar.slidingmenudemo.R;
 
 public class Bj_Xz_info extends Activity implements View.OnTouchListener {
@@ -68,14 +69,14 @@ public class Bj_Xz_info extends Activity implements View.OnTouchListener {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				/*Toast.makeText(Bj_Xz_info.this, "1123", Toast.LENGTH_LONG).show();*/
-				Add_data  add_data  =new Add_data(Bj_Xz_info.this);
-				Tb_outaccount outinfo = new Tb_outaccount();
-				outinfo.setMoney(je.getText().toString());
-				outinfo.setTime(sj.getText().toString());
-				outinfo.setType(lx.getSelectedItem().toString());
-				outinfo.setMark(bz.getText().toString());
-				
-				add_data.outadd(outinfo);
+				 String money = je.getText().toString();
+				 if(!money.isEmpty()){
+					 OutaccountDAO outinfo = new OutaccountDAO(Bj_Xz_info.this);
+					 Tb_outaccount tb_outaccount = new Tb_outaccount(outinfo.getMaxId() +1, 
+							 Double.parseDouble(money), sj.getText().toString(), lx.getSelectedItem().toString(), null,bz.getText().toString());
+					 outinfo.add(tb_outaccount);
+					Toast.makeText(Bj_Xz_info.this, "1123", Toast.LENGTH_LONG).show();
+				 }
 				
 			}
 		});

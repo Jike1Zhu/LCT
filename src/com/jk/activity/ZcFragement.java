@@ -5,30 +5,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.jk.DAO.Add_data;
+import com.jk.dao.OutaccountDAO;
+import com.jk.model.Tb_outaccount;
 import com.patrickstar.slidingmenudemo.R;
 
 public class ZcFragement extends Fragment {
@@ -36,11 +30,15 @@ public class ZcFragement extends Fragment {
 	private View mView;
 	private ListView lv_show;
 	private Button btn_tj;
-	private List<Map<String, Object>> data;
+	private List<Tb_outaccount> data;
 	private TextView tv_rqsj;
 	private int position;
 	private Button btn_bc;
 	private Button zcbc;
+	
+	private TextView tv_type;
+	private TextView tv_money;
+	private TextView tv_date;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,7 +56,9 @@ public class ZcFragement extends Fragment {
 		lv_show = (ListView) mView.findViewById(R.id.lv_show);
 		btn_tj = (Button) mView.findViewById(R.id.btn_tj);
 		btn_tj.setVisibility(1);
-		data = getData();
+		OutaccountDAO outinfo = new OutaccountDAO(getActivity());
+		 
+		data = outinfo.getScrollData(0, (int)outinfo.getCount());
 		MyAdapter adapter = new MyAdapter(getActivity());
 		lv_show.setAdapter(adapter);
 
@@ -137,7 +137,7 @@ public class ZcFragement extends Fragment {
 			// Get the data item associated with the specified position in the
 			// data set.
 			// 获取数据集中与指定索引对应的数据项
-			return position;
+			return data.get(position);
 		}
 
 		@Override
@@ -159,11 +159,11 @@ public class ZcFragement extends Fragment {
 				holder = new ViewHolder();
 				// 根据自定义的Item布局加载布局
 				convertView = mInflater.inflate(R.layout.list_item, null);
-				holder.tv_type = (TextView) convertView
+				tv_type = (TextView) convertView
 						.findViewById(R.id.tv_type);
-				holder.tv_money = (TextView) convertView
+				tv_money = (TextView) convertView
 						.findViewById(R.id.tv_money);
-				holder.tv_data = (TextView) convertView
+				tv_date = (TextView) convertView
 						.findViewById(R.id.tv_data);
 				// 将设置好的布局保存到缓存中，并将其设置在Tag里，以便后面方便取出Tag
 
@@ -171,9 +171,10 @@ public class ZcFragement extends Fragment {
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
-			holder.tv_type.setText((String) data.get(position).get("type"));
-			holder.tv_money.setText((String) data.get(position).get("money"));
-			holder.tv_data.setText((String) data.get(position).get("data"));
+			Tb_outaccount tb_outaccount = data.get(position);
+			tv_type.setText(tb_outaccount.getType());
+			tv_money.setText(tb_outaccount.getMoney()+"");
+			tv_date.setText(tb_outaccount.getTime());
 
 			return convertView;
 		}
@@ -191,5 +192,19 @@ public class ZcFragement extends Fragment {
 			list.add(map);
 		}
 		return list;
+		
+/*		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map;
+		OutaccountDAO outinfo = new OutaccountDAO(getActivity());
+		List<Tb_outaccount> aa=  outinfo.getScrollData(0, (int)outinfo.getCount());
+		String[] str = new String[aa.size()];
+		for (Tb_outaccount outaccount:aa) {
+			map = new HashMap<String, Object>();
+			map.put("type", outaccount.getType());
+			map.put("money", outaccount.getMoney());
+			map.put("date", outaccount.getTime());
+			list.add(map);
+		}
+		return list;*/
 	}
 }
