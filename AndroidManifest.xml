@@ -22,17 +22,21 @@
         <activity
             android:name="com.jk.activity.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity android:name="com.jk.activity.Xz_info_activity" 
               android:launchMode="singleInstance">
         </activity>
          <activity android:name="com.jk.activity.Bj_info_activity" 
                android:launchMode="singleInstance">
+        </activity>
+        <activity android:name="com.jk.activity.Login_activity" 
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         
     </application>

@@ -19,7 +19,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 + "type varchar(10),address varchar(100),mark varchar(200))");// ����֧����Ϣ��
         db.execSQL("create table tb_inaccount (_id integer primary key,money decimal,time varchar(10),"
                 + "type varchar(10),handler varchar(100),mark varchar(200))");// ����������Ϣ��
-        db.execSQL("create table tb_pwd (password varchar(20))");// ���������
+        db.execSQL("create table tb_pwd (mbid integer,mbda varchar(100),password varchar(20))");// ���������
         db.execSQL("create table tb_flag (_id integer primary key,flag varchar(200))");// ������ǩ��Ϣ��
     }
 
