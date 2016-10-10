@@ -32,10 +32,10 @@ public class Bj_info_activity extends Activity implements View.OnTouchListener {
 	private static final String[] m = { "还信用卡", "生活开支", "娱乐活动", "送礼", "其他" };
 
 	private EditText editdate;
-	private Button zcbc;
+	private Button zcbc, qx;
 	private EditText sj, je, bz;
 	private Spinner lx;
-	private int id;
+	private String id;
 	private String op;
 
 	@Override
@@ -62,6 +62,7 @@ public class Bj_info_activity extends Activity implements View.OnTouchListener {
 		editdate = (EditText) this.findViewById(R.id.et_rqsj);
 		editdate.setOnTouchListener(this);
 		zcbc = (Button) findViewById(R.id.bc);
+		qx = (Button) findViewById(R.id.qx);
 		je = (EditText) findViewById(R.id.edit_srje);
 		sj = (EditText) findViewById(R.id.et_rqsj);
 		bz = (EditText) findViewById(R.id.et_bz);
@@ -69,8 +70,9 @@ public class Bj_info_activity extends Activity implements View.OnTouchListener {
 
 		Intent intent = getIntent();
 
-		id = Integer.parseInt(intent.getStringExtra("id"));
-		Toast.makeText(Bj_info_activity.this, "1111", Toast.LENGTH_LONG).show();
+		id = intent.getStringExtra("id");
+		// Toast.makeText(Bj_info_activity.this, intent.getStringExtra("id"),
+		// Toast.LENGTH_LONG).show();
 		je.setText(intent.getStringExtra("Money")); // Type
 		sj.setText(intent.getStringExtra("Time"));
 		bz.setText(intent.getStringExtra("Depict"));
@@ -85,28 +87,43 @@ public class Bj_info_activity extends Activity implements View.OnTouchListener {
 		} else {
 			lx.setSelection(4, true);
 		}
+		qx.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				Die(je, sj, bz, editdate, zcbc, qx, lx, spinner);
+				finish();
+			}
+		});
 
 		zcbc.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				String money = je.getText().toString();
+
 				Intent objIntent = new Intent();
-				objIntent.putExtra("Money", Double.parseDouble(money));
+				objIntent.putExtra("id", id);
+				objIntent.putExtra("Money", je.getText().toString());
 				objIntent.putExtra("Time", sj.getText().toString());
 				objIntent.putExtra("Type", lx.getSelectedItem().toString());
 				objIntent.putExtra("Depict", bz.getText().toString());
 
-				Toast.makeText(Bj_info_activity.this, "我是编辑", Toast.LENGTH_LONG)
-						.show();
 				setResult(2, objIntent);
-
+				Die(je, sj, bz, editdate, zcbc, qx, lx, spinner);
 				finish();
 			}
 
 		});
 
+	}
+
+	public void Die(EditText et, EditText et1, EditText et2, EditText et3,
+			Button btn, Button btn2, Spinner sp, Spinner sp1) {
+		et = null;
+		btn = null;
+		sp = null;
 	}
 
 	@Override

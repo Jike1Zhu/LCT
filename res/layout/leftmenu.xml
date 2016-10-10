@@ -7,6 +7,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/ll_zc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="Click_zc"
@@ -30,6 +31,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_sr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -56,6 +58,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_bq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -80,6 +83,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_xt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

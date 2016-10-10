@@ -1,34 +1,34 @@
 package com.jk.model;
 
-public class Tb_flag// ��ǩ��Ϣʵ����
+public class Tb_flag
 {
-    private int _id;// �洢��ǩ���
-    private String flag;// �洢��ǩ��Ϣ
+	private int _id;
+	private String flag;
 
-    public Tb_flag() {// Ĭ�Ϲ��캯��
-        super();
-    }
+	public Tb_flag() {
+		super();
+	}
 
-    // �����вι��캯����������ʼ����ǩ��Ϣʵ�����еĸ����ֶ�
-    public Tb_flag(int id, String flag) {
-        super();
-        this._id = id;// Ϊ��ǩ�Ÿ�ֵ
-        this.flag = flag;// Ϊ��ǩ��Ϣ��ֵ
-    }
+	
+	public Tb_flag(int id, String flag) {
+		super();
+		this._id = id;
+		this.flag = flag;
+	}
 
-    public int getid() {// ���ñ�ǩ��ŵĿɶ�����
-        return _id;
-    }
+	public int getid() {
+		return _id;
+	}
 
-    public void setid(int id) {// ���ñ�ǩ��ŵĿ�д����
-        this._id = id;
-    }
+	public void setid(int id) {
+		this._id = id;
+	}
 
-    public String getFlag() {// ���ñ�ǩ��Ϣ�Ŀɶ�����
-        return flag;
-    }
+	public String getFlag() {
+		return flag;
+	}
 
-    public void setFlag(String flag) {// ���ñ�ǩ��Ϣ�Ŀ�д����
-        this.flag = flag;
-    }
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
 }

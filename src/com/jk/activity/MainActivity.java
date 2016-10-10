@@ -1,12 +1,20 @@
 package com.jk.activity;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import android.R.anim;
+import android.R.color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.patrickstar.slidingmenudemo.R;
@@ -17,19 +25,21 @@ import com.patrickstar.slidingmenudemo.R;
 
 public class MainActivity extends FragmentActivity {
 
+	
+
 	private TextView tv_zcgl;
 	private Button btnSecond;
 	private FrameLayout flayout;
+	private static Boolean isExit = false;
 	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		/*requestWindowFeature(Window.FEATURE_NO_TITLE);*/
+		/* requestWindowFeature(Window.FEATURE_NO_TITLE); */
 		setContentView(R.layout.activity_main);
-		
-		flayout = (FrameLayout) findViewById(R.id.flayout);
 
+		flayout = (FrameLayout) findViewById(R.id.flayout);
+		
 		SlidingMenu menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
 		// 设置触摸屏幕的模式
@@ -81,26 +91,61 @@ public class MainActivity extends FragmentActivity {
 
 	public void Click_zc(View v) {
 		flayout.removeAllViews();
-		ZcFragement zc = new ZcFragement();		
+		ZcFragement zc = new ZcFragement();
+		
 		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
+		
 	}
+
 	public void Click_sr(View v) {
 		flayout.removeAllViews();
 		SrFragement sr = new SrFragement();
 		getFragmentManager().beginTransaction().add(R.id.flayout, sr).commit();
 	}
+
 	public void Click_bq(View v) {
 		flayout.removeAllViews();
 		BqFragement second = new BqFragement();
-		getFragmentManager().beginTransaction().add(R.id.flayout, second).commit();
+		getFragmentManager().beginTransaction().add(R.id.flayout, second)
+				.commit();
 	}
+
 	public void Click_xtsz(View v) {
 		flayout.removeAllViews();
 		XtszFragement second = new XtszFragement();
-		getFragmentManager().beginTransaction().add(R.id.flayout, second).commit();
-	}
-	public void Click_tc(View v) {
-		
+		getFragmentManager().beginTransaction().add(R.id.flayout, second)
+				.commit();
 	}
 
+	public void Click_tc(View v) {
+		 exitBy2Click();
+	}
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO 自动生成的方法存根
+		if(keyCode == KeyEvent.KEYCODE_BACK)
+		{ 
+		  exitBy2Click(); //调用双击退出函数
+		}
+		 return false;
+	}
+
+	private void exitBy2Click() {
+		Timer tExit = null;
+		if (isExit == false) {
+			isExit = true; // 准备退出
+			Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+			tExit = new Timer();
+			tExit.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					isExit = false; // 取消退出
+				}
+			}, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
+
+		} else {
+			finish();
+			System.exit(0);
+		}
+	}
 }

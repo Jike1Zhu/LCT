@@ -33,7 +33,7 @@ public class Xz_info_activity extends Activity implements View.OnTouchListener {
 	private static final String[] m = { "还信用卡", "生活开支", "娱乐活动", "送礼", "其他" };
 
 	private EditText editdate;
-	private Button zcbc;
+	private Button zcbc,qx;
 	private EditText sj, je, bz;
 	private Spinner lx;
 	private int id;
@@ -63,6 +63,7 @@ public class Xz_info_activity extends Activity implements View.OnTouchListener {
 		editdate = (EditText) this.findViewById(R.id.et_rqsj);
 		editdate.setOnTouchListener(this);
 		zcbc = (Button) findViewById(R.id.bc);
+		qx = (Button) findViewById(R.id.qx);
 		je = (EditText) findViewById(R.id.edit_srje);
 		sj = (EditText) findViewById(R.id.et_rqsj);
 		bz = (EditText) findViewById(R.id.et_bz);
@@ -70,36 +71,34 @@ public class Xz_info_activity extends Activity implements View.OnTouchListener {
 
 	
 
-		
+		qx.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				Die(je,sj,bz,editdate,zcbc,qx,lx,spinner);
+				finish();
+			}
+		});
 
 		zcbc.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				String money = je.getText().toString();
-				if (!money.isEmpty()) {
-					OutaccountDAO outinfo = new OutaccountDAO(Xz_info_activity.this);
-					Tb_outaccount tb_outaccount = new Tb_outaccount(
-							outinfo.getMaxId() + 1, Double.parseDouble(money),
-							sj.getText().toString(), lx.getSelectedItem().toString(), null, bz.getText().toString());
-					outinfo.add(tb_outaccount);
-					
-					
-					
-					Toast.makeText(Xz_info_activity.this, "新增成功",Toast.LENGTH_LONG).show();
-					
-				}
-				/*
+				
+				
+				
 				Intent objIntent = new Intent();
-				objIntent.putExtra("Money", money);
+				objIntent.putExtra("Money", je.getText().toString());
 				objIntent.putExtra("Time", sj.getText().toString());
 				objIntent.putExtra("Type", lx.getSelectedItem().toString());
 				objIntent.putExtra("Depict", bz.getText().toString());
 
 				
 					//Toast.makeText(Xz_info_activity.this, "我是新增", Toast.LENGTH_LONG).show();
-					setResult(1, objIntent);*/
+					setResult(1, objIntent);
+					Die(je,sj,bz,editdate,zcbc,qx,lx,spinner);
 					finish();
 					
 				} 
@@ -110,7 +109,11 @@ public class Xz_info_activity extends Activity implements View.OnTouchListener {
 		});
 
 	}
-
+	public void Die(EditText et,EditText et1,EditText et2,EditText et3,Button btn,Button btn2,Spinner sp,Spinner sp1){
+		et = null;
+		btn = null;
+		sp = null;
+}
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {

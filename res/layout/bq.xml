@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   
     android:orientation="vertical" >
 
     <TextView
@@ -11,12 +10,13 @@
         android:gravity="center_horizontal"
         android:text="便签管理"
         android:textSize="25sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingTop="30dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingTop="30dp" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,14 +43,20 @@
         android:paddingTop="30dp" >
 
         <Button
-            android:id="@+id/qx"
-            android:layout_width="150dp"
+            android:id="@+id/ck"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="取消" />
+            android:text="查看" />
+
+        <Button
+            android:id="@+id/qk"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="清空" />
 
         <Button
             android:id="@+id/bc"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="保存" />
     </LinearLayout>
