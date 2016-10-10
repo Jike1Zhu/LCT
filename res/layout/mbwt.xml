@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="请设置密保问题，并牢记！" />
+            android:text="回答正确后，即可设置新密码" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/mb_bc"
+            android:id="@+id/mb_tj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"

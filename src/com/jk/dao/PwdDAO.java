@@ -25,6 +25,12 @@ public class PwdDAO {
         // ִ������������
         db.execSQL("insert into tb_pwd (password) values (?)", new Object[] { tb_pwd.getPassword() });
     }
+    
+    public void add_mb(Tb_pwd tb_pwd) {
+        db = helper.getWritableDatabase();// ��ʼ��SQLiteDatabase����
+        // ִ������������
+        db.execSQL("insert into tb_pwd (mbid,mbda) values (?,?)", new Object[] { tb_pwd.getId() , tb_pwd.getDa() });
+    }
 
     /**
      * ����������Ϣ
@@ -42,15 +48,15 @@ public class PwdDAO {
      * 
      * @return
      */
-    public Tb_pwd find() {
+    public int find(Tb_pwd tb_pwd) {
         db = helper.getWritableDatabase();// ��ʼ��SQLiteDatabase����
         // �������벢�洢��Cursor����
-        Cursor cursor = db.rawQuery("select password from tb_pwd", null);
+        Cursor cursor = db.rawQuery("select * from tb_pwd where password =?",  new String[] { tb_pwd.getPassword() });
         if (cursor.moveToNext()) {// �������ҵ���������Ϣ
             // ������洢��Tb_pwd����
-            return new Tb_pwd(cursor.getString(cursor.getColumnIndex("password")));
+            return 1;//new Tb_pwd(cursor.getString(cursor.getColumnIndex("password")));
         }
-        return null;// ���û����Ϣ���򷵻�null
+        return 0;// ���û����Ϣ���򷵻�null
     }
 
     public long getCount() {

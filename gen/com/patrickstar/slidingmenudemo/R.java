@@ -41,7 +41,7 @@ public final class R {
         public static final int LL_3=0x7f080007;
         public static final int LL_4=0x7f08000a;
         public static final int Spinner01=0x7f080009;
-        public static final int action_settings=0x7f080029;
+        public static final int action_settings=0x7f08002e;
         public static final int bc=0x7f08000e;
         public static final int bz=0x7f08000b;
         public static final int ck=0x7f080010;
@@ -56,15 +56,19 @@ public final class R {
         public static final int img_tc=0x7f080020;
         public static final int img_xt=0x7f08001e;
         public static final int img_zc=0x7f080015;
-        public static final int item1=0x7f08002a;
+        public static final int item1=0x7f08002f;
         public static final int je=0x7f080002;
         public static final int ll_bq=0x7f08001a;
         public static final int ll_sr=0x7f080017;
         public static final int ll_xt=0x7f08001d;
         public static final int ll_zc=0x7f080014;
         public static final int login=0x7f080026;
-        public static final int lv_show=0x7f080028;
+        public static final int lv_show=0x7f08002d;
         public static final int lx=0x7f080008;
+        public static final int mb_bc=0x7f08002c;
+        public static final int mb_tj=0x7f08002b;
+        public static final int mbda=0x7f08002a;
+        public static final int mbwt=0x7f080029;
         public static final int pwd=0x7f080025;
         public static final int qk=0x7f080011;
         public static final int qx=0x7f08000d;
@@ -79,6 +83,7 @@ public final class R {
         public static final int tv_xtsz=0x7f08001f;
         public static final int tv_zc=0x7f080016;
         public static final int vv=0x7f080027;
+        public static final int zhmm=0x7f080028;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -88,10 +93,11 @@ public final class R {
         public static final int leftmenu=0x7f030004;
         public static final int list_item=0x7f030005;
         public static final int login=0x7f030006;
-        public static final int sr=0x7f030007;
-        public static final int xtsz=0x7f030008;
-        public static final int xz_info=0x7f030009;
-        public static final int zc=0x7f03000a;
+        public static final int mbwt=0x7f030007;
+        public static final int sr=0x7f030008;
+        public static final int xtsz=0x7f030009;
+        public static final int xz_info=0x7f03000a;
+        public static final int zc=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f070000;
