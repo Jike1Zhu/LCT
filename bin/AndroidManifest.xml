@@ -18,13 +18,22 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppBaseTheme" >
         <activity
-            android:name="com.jk.activity.MainActivity"
+            android:name="com.jk.Fragement.MainActivity"
             android:label="@string/app_name" >
             
         </activity>
         <activity android:name="com.jk.activity.Xz_info_activity" 
+              android:launchMode="singleInstance">
+        </activity>
+         <activity android:name="com.jk.activity.bq_bj_content_activity" 
+              android:launchMode="singleInstance">
+        </activity>
+         <activity android:name="com.jk.activity.bq_content_activity" 
+              android:launchMode="singleInstance">
+        </activity>
+        <activity android:name="com.jk.activity.xgmm_activity" 
               android:launchMode="singleInstance">
         </activity>
          <activity android:name="com.jk.activity.Bj_info_activity" 

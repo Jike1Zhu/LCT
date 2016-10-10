@@ -1,4 +1,4 @@
-package com.jk.activity;
+package com.jk.Fragement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,11 +24,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jk.activity.Bj_info_activity;
+import com.jk.activity.Xz_info_activity;
 import com.jk.dao.OutaccountDAO;
 import com.jk.model.Tb_outaccount;
 import com.patrickstar.slidingmenudemo.R;
 
 public class ZcFragement extends Fragment {
+
+	public int getOp() {
+		return op;
+	}
+
+	public void setOp(int op) {
+		this.op = op;
+	}
 
 	private View mView;
 	private ListView lv_show;
@@ -39,11 +49,13 @@ public class ZcFragement extends Fragment {
 	private Button btn_bc;
 	private Button zcbc;
 	private MyAdapter adapter;
+	private int op = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		
 		if (mView == null) {
 			initView(inflater, container);
 		}
@@ -87,7 +99,10 @@ public class ZcFragement extends Fragment {
 		menu.clear();
 		MenuInflater inflatermenu = new MenuInflater(getActivity());
 
+		if(op == 0){
 		inflatermenu.inflate(R.menu.menu1, menu);
+		op = 1;
+		}
 
 		super.onCreateOptionsMenu(menu, inflatermenu);
 	}

@@ -1,4 +1,4 @@
-package com.jk.activity;
+package com.jk.Fragement;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -62,9 +62,17 @@ public class XtszFragement extends Fragment {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				PwdDAO objPwdDAO = new PwdDAO(getActivity());
-				Tb_pwd tb_pwd = new Tb_pwd(spinner.getId(),mb_da.getText().toString());
-				//objPwdDAO.add_mb(tb_pwd);
-				Toast.makeText(getActivity(), spinner.getSelectedItemId()+""/*"保存成功！"*/, Toast.LENGTH_LONG).show();
+				Tb_pwd tb_pwd = new Tb_pwd((int) spinner.getSelectedItemId(),mb_da.getText().toString());
+				if(objPwdDAO.find_mbda(tb_pwd) == 1){
+					objPwdDAO.update_mb(tb_pwd);
+					Toast.makeText(getActivity(), "修改密保问题成功！", Toast.LENGTH_LONG).show();
+				}else{
+					objPwdDAO.add_mb(tb_pwd);
+					Toast.makeText(getActivity(), "保存成功！", Toast.LENGTH_LONG).show();
+				}
+				
+				
+				
 			}
 		});
 

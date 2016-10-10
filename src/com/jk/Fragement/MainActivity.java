@@ -1,4 +1,4 @@
-package com.jk.activity;
+package com.jk.Fragement;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -91,8 +91,7 @@ public class MainActivity extends FragmentActivity {
 
 	public void Click_zc(View v) {
 		flayout.removeAllViews();
-		ZcFragement zc = new ZcFragement();
-		
+		ZcFragement zc = new ZcFragement();		
 		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
 		
 	}

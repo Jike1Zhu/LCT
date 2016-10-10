@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jk.Fragement.MainActivity;
 import com.jk.dao.PwdDAO;
 import com.jk.model.Tb_pwd;
 import com.patrickstar.slidingmenudemo.R;
@@ -19,6 +20,7 @@ public class Login_activity extends Activity{
 	private Button btn_login;
 	private EditText pwd;
 	private TextView zhmm;
+	private int cs = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -27,12 +29,25 @@ public class Login_activity extends Activity{
 		btn_login = (Button) findViewById(R.id.login);
 		pwd = (EditText) findViewById(R.id.pwd);
 		zhmm = (TextView) findViewById(R.id.zhmm);
+		
+		if (cs == 0 ) {
+			PwdDAO objPwdDAO = new PwdDAO(Login_activity.this);
+			Tb_pwd tb_pwd = new Tb_pwd();
+			tb_pwd.setPassword("123");
+			objPwdDAO.add(tb_pwd);
+			cs = 1;
+		}
+		
 		btn_login.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				
 				PwdDAO objPwdDAO = new PwdDAO(Login_activity.this);
+				/*Tb_pwd tb_pwd = new Tb_pwd();
+				tb_pwd.setPassword("123");
+				objPwdDAO.add(tb_pwd);*/
 				Tb_pwd objPwd = new Tb_pwd(pwd.getText().toString());
 				if(objPwdDAO.find(objPwd) == 1){
 					Toast.makeText(Login_activity.this, "登陆成功！", Toast.LENGTH_LONG).show();

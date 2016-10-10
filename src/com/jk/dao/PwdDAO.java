@@ -31,6 +31,28 @@ public class PwdDAO {
         // ִ������������
         db.execSQL("insert into tb_pwd (mbid,mbda) values (?,?)", new Object[] { tb_pwd.getId() , tb_pwd.getDa() });
     }
+    
+    public int find_mb(Tb_pwd tb_pwd) {
+        db = helper.getWritableDatabase();// ��ʼ��SQLiteDatabase����
+        // �������벢�洢��Cursor����
+        Cursor cursor = db.rawQuery("select * from tb_pwd where mbid =? and mbda =?",  new String[] { tb_pwd.getId()+"",tb_pwd.getDa() });
+        if (cursor.moveToNext()) {// �������ҵ���������Ϣ
+            // ������洢��Tb_pwd����
+            return 1;
+        }
+        return 0;// ���û����Ϣ���򷵻�null
+    }
+    
+    public int find_mbda(Tb_pwd tb_pwd) {
+        db = helper.getWritableDatabase();// ��ʼ��SQLiteDatabase����
+        // �������벢�洢��Cursor����
+        Cursor cursor = db.rawQuery("select mbda from tb_pwd where mbid =? ",  new String[] { tb_pwd.getId()+"" });
+        if (cursor.moveToNext()) {// �������ҵ���������Ϣ
+            // ������洢��Tb_pwd����
+            return 1;
+        }
+        return 0;// ���û����Ϣ���򷵻�null
+    }
 
     /**
      * ����������Ϣ
@@ -41,6 +63,12 @@ public class PwdDAO {
         db = helper.getWritableDatabase();// ��ʼ��SQLiteDatabase����
         // ִ���޸��������
         db.execSQL("update tb_pwd set password = ?", new Object[] { tb_pwd.getPassword() });
+    }
+    
+    public void update_mb(Tb_pwd tb_pwd) {
+        db = helper.getWritableDatabase();// ��ʼ��SQLiteDatabase����
+        // ִ���޸��������
+        db.execSQL("update tb_pwd set mbid = ? , mbda = ?", new Object[] { tb_pwd.getId() ,tb_pwd.getDa() });
     }
 
     /**

@@ -42,11 +42,6 @@
         android:orientation="horizontal"
         android:paddingTop="30dp" >
 
-        <Button
-            android:id="@+id/ck"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="查看" />
 
         <Button
             android:id="@+id/qk"

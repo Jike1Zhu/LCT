@@ -1,10 +1,12 @@
-package com.jk.activity;
+package com.jk.Fragement;
 
 import java.util.List;
 
+import android.R.integer;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Path.Op;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -20,11 +22,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.jk.activity.Xz_info_activity;
 import com.jk.dao.OutaccountDAO;
 import com.jk.model.Tb_outaccount;
 import com.patrickstar.slidingmenudemo.R;
 
-public class SrFragement extends   Fragment {
+public class SrFragement extends Fragment {
 
 	private View mView;
 	private ListView lv_show;
@@ -39,6 +42,7 @@ public class SrFragement extends   Fragment {
 	private TextView tv_type;
 	private TextView tv_money;
 	private TextView tv_date;
+	private int op = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,8 +78,11 @@ public class SrFragement extends   Fragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		menu.clear();
 		MenuInflater inflatermenu = new MenuInflater(getActivity());
-		
-		inflatermenu.inflate(R.menu.menu1, menu);
+
+		if (op == 0) {
+			inflatermenu.inflate(R.menu.menu1, menu);
+			op = 1;
+		}
 
 		super.onCreateOptionsMenu(menu, inflatermenu);
 	}
@@ -85,7 +92,7 @@ public class SrFragement extends   Fragment {
 		if (item.getItemId() == R.id.item1) {
 			Intent intent = null;
 			intent = new Intent(getActivity(), Xz_info_activity.class);
-			
+
 			startActivityForResult(intent, 1);
 			/* Toast.makeText(getActivity(), "asdas", Toast.LENGTH_LONG).show(); */
 		}
@@ -106,10 +113,6 @@ public class SrFragement extends   Fragment {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		position = info.position;
 	}
-
-	
-
-	
 
 	public class MyAdapter extends BaseAdapter {
 

@@ -75,6 +75,16 @@ public class FlagDAO {
         }
     }
 
+    public void deleteById(String id){
+		//1. 得到连接
+		db = helper.getWritableDatabase(); 
+		//2. 执行delete delete from black_number where _id=id
+		db.execSQL("delete from tb_flag where _id =" + id + "");
+		//int deleteCount = database.delete("tb_outaccount", "_id=?", new String[]{id+""});
+		//Log.i("TAG", "deleteCount="+deleteCount);
+		//3. 关闭
+		db.close();
+	}
     /**
      * 
      * 

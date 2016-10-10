@@ -4,8 +4,8 @@
     tools:context="com.jk.activity.ZcFragement" >
 
     <item
-        android:id="@+id/item1"
-        android:title="新增支出"/>
+        android:id="@+id/item2"
+        android:title="新增便签"/>
     
 
 </menu>

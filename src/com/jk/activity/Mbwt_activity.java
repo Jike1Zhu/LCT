@@ -53,8 +53,13 @@ public class Mbwt_activity extends Activity{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				PwdDAO objPwdDAO = new PwdDAO(Mbwt_activity.this);
-				Tb_pwd objPwd = new Tb_pwd(mb_da.getText().toString());
-				
+				Tb_pwd objPwd = new Tb_pwd((int) spinner.getSelectedItemId(),mb_da.getText().toString());
+				if(objPwdDAO.find_mb(objPwd) == 1){
+					Toast.makeText(Mbwt_activity.this, "认证成功！", Toast.LENGTH_LONG).show();
+					Intent objIntent = new Intent(Mbwt_activity.this,xgmm_activity.class);
+					startActivity(objIntent);
+				}
+				finish();
 			}
 		});
 		
