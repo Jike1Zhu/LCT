@@ -2,32 +2,27 @@ package com.jk.Fragement;
 
 import java.util.List;
 
-import android.R.integer;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Path.Op;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.jk.activity.bq_bj_content_activity;
-import com.jk.activity.bq_content_activity;
 import com.jk.dao.FlagDAO;
-import com.jk.dao.OutaccountDAO;
 import com.jk.model.Tb_flag;
-import com.jk.model.Tb_outaccount;
 import com.patrickstar.slidingmenudemo.R;
 
 public class BqFragement extends Fragment {
@@ -63,33 +58,41 @@ public class BqFragement extends Fragment {
 		bq_lv_show.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 		bq_lv_show.setOnCreateContextMenuListener(this);
+		bq_lv_show.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO 自动生成的方法存根
+				FlagDAO flagDAO = new FlagDAO(getActivity());
+				Tb_flag tb_flag = data.get(position);
+				Intent objIntent = new Intent(getActivity(), bq_bj_content_activity.class);
+				int id_2 = tb_flag.getid();
+				tb_flag = flagDAO.find(id_2);
+
+				objIntent.putExtra("id", tb_flag.getid() + "");
+
+				objIntent.putExtra("Flag", tb_flag.getFlag());
+				objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(objIntent);
+
+			}
+		});
 
 	}
 
 	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		menu.clear();
-		MenuInflater inflatermenu = new MenuInflater(getActivity());
-
-		if (op == 0) {
-			inflatermenu.inflate(R.menu.menu2, menu);
-			op = 1;
+	public void onResume() {
+		// TODO Auto-generated method stub
+		// Toast.makeText(getActivity(), "asdas", Toast.LENGTH_LONG).show();
+		if (bq_lv_show != null) {
+			bq_lv_show.setAdapter(null);
+			FlagDAO flagDAO = new FlagDAO(getActivity());
+			data = flagDAO.getScrollData(0, (int) flagDAO.getCount());// getData();
+			adapter = new MyAdapter(getActivity());
+			bq_lv_show.setAdapter(adapter);
 		}
-
-		super.onCreateOptionsMenu(menu, inflatermenu);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.item2) {
-			Intent intent = new Intent(getActivity(), bq_content_activity.class);
-
-			startActivity(intent);
-
-			// Toast.makeText(getActivity(), "asdas", Toast.LENGTH_LONG).show();
-		}
-
-		return super.onOptionsItemSelected(item);
+		super.onResume();
 	}
 
 	@Override
@@ -124,6 +127,7 @@ public class BqFragement extends Fragment {
 			objIntent.putExtra("id", tb_flag.getid() + "");
 
 			objIntent.putExtra("Flag", tb_flag.getFlag());
+			objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			startActivity(objIntent);
 
 			break;

@@ -76,5 +76,7 @@ public class XtszFragement extends Fragment {
 			}
 		});
 
+		
+		
 	}
 }

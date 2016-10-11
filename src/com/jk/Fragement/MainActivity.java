@@ -3,20 +3,26 @@ package com.jk.Fragement;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.R.anim;
-import android.R.color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jk.activity.ActivityManager;
+import com.jk.activity.Bj_info_sr_activity;
+import com.jk.activity.Bj_info_zc_activity;
+import com.jk.activity.Xz_info_zc_activity;
+import com.jk.activity.Xz_info_sr_activity;
+import com.jk.activity.bq_bj_content_activity;
+import com.jk.activity.bq_content_activity;
 import com.patrickstar.slidingmenudemo.R;
 
 /*
@@ -25,21 +31,25 @@ import com.patrickstar.slidingmenudemo.R;
 
 public class MainActivity extends FragmentActivity {
 
-	
-
 	private TextView tv_zcgl;
 	private Button btnSecond;
+	private int op = 0;
+	private int zt = 0;
+	private ImageButton img_btn;
 	private FrameLayout flayout;
 	private static Boolean isExit = false;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		/* requestWindowFeature(Window.FEATURE_NO_TITLE); */
 		setContentView(R.layout.activity_main);
-
-		flayout = (FrameLayout) findViewById(R.id.flayout);
 		
+		flayout = (FrameLayout) findViewById(R.id.flayout);
+		img_btn = (ImageButton) findViewById(R.id.img_btn);
+		img_btn.setVisibility(View.INVISIBLE);
+		ZcFragement zc = new ZcFragement();
+		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
 		SlidingMenu menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
 		// 设置触摸屏幕的模式
@@ -60,6 +70,33 @@ public class MainActivity extends FragmentActivity {
 		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		// 为侧滑菜单设置布局
 		menu.setMenu(R.layout.leftmenu);
+		img_btn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				if (op == 1) {
+
+					Intent intent = null;
+					intent = new Intent(MainActivity.this,
+							Xz_info_zc_activity.class);
+
+					startActivityForResult(intent, 1);
+				} else if (op == 2) {
+					Intent intent = new Intent(MainActivity.this,
+							Xz_info_sr_activity.class);
+
+					startActivity(intent);
+				} else if (op == 3) {
+					Intent intent = new Intent(MainActivity.this,
+							bq_content_activity.class);
+
+					startActivity(intent);
+				}
+				// Toast.makeText(MainActivity.this, "aaaaa",
+				// Toast.LENGTH_LONG).show();
+			}
+		});
 
 	}
 
@@ -90,26 +127,47 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void Click_zc(View v) {
-		flayout.removeAllViews();
-		ZcFragement zc = new ZcFragement();		
-		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
 		
+		op = 1;
+		img_btn.setVisibility(View.VISIBLE);
+		flayout.removeAllViews();
+		
+		
+		
+		
+		ZcFragement zc = new ZcFragement();
+		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
+
 	}
 
 	public void Click_sr(View v) {
+		
+		op = 2;
+		img_btn.setVisibility(View.VISIBLE);
 		flayout.removeAllViews();
+
+		
 		SrFragement sr = new SrFragement();
 		getFragmentManager().beginTransaction().add(R.id.flayout, sr).commit();
 	}
 
 	public void Click_bq(View v) {
+		
+		op = 3;
+		
+		img_btn.setVisibility(View.VISIBLE);
 		flayout.removeAllViews();
+
+		
+		
 		BqFragement second = new BqFragement();
 		getFragmentManager().beginTransaction().add(R.id.flayout, second)
 				.commit();
+		
 	}
 
 	public void Click_xtsz(View v) {
+		img_btn.setVisibility(View.INVISIBLE);
 		flayout.removeAllViews();
 		XtszFragement second = new XtszFragement();
 		getFragmentManager().beginTransaction().add(R.id.flayout, second)
@@ -117,16 +175,16 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void Click_tc(View v) {
-		 exitBy2Click();
+		exitBy2Click();
 	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO 自动生成的方法存根
-		if(keyCode == KeyEvent.KEYCODE_BACK)
-		{ 
-		  exitBy2Click(); //调用双击退出函数
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			exitBy2Click(); // 调用双击退出函数
 		}
-		 return false;
+		return false;
 	}
 
 	private void exitBy2Click() {

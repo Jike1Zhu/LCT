@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,16 +15,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="新增支出信息"
+            android:text="编辑收入信息"
             android:textSize="18sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true" >
+        android:layout_centerVertical="true"
+         >
 
-        
+     
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,16 +46,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
-                   
                     android:text="金额" />
 
                 <EditText
                     android:id="@+id/edit_srje"
                     android:layout_width="200dp"
                     android:layout_height="45dp"
+                    android:inputType="number"
                     android:hint="请输入金额"
                     android:background="@android:drawable/edit_text"
-                    android:inputType="number" />
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -68,13 +70,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
+                     android:hint="点我选择时间"
                     android:text="时间" />
 
                 <EditText
                     android:id="@+id/et_rqsj"
                     android:layout_width="200dp"
                     android:layout_height="45dp"
-                    android:hint="点我选择时间"
                     android:background="@android:drawable/edit_text"
                     android:inputType="textMultiLine" />
             </LinearLayout>
@@ -122,8 +124,8 @@
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/edit_text"
                     android:enabled="true"
-                   android:hint="备注,选填"
                     android:inputType="textMultiLine"
+                    android:hint="备注"
                     android:maxLines="5"
                     android:minLines="3"
                     android:scrollbars="vertical" >

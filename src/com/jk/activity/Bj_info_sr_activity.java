@@ -2,13 +2,11 @@ package com.jk.activity;
 
 import java.util.Calendar;
 
-import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MotionEvent;
@@ -22,28 +20,32 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.jk.dao.OutaccountDAO;
-import com.jk.model.Tb_outaccount;
+import com.jk.dao.InaccountDAO;
+import com.jk.model.Tb_inaccount;
 import com.patrickstar.slidingmenudemo.R;
 
-public class Xz_info_activity extends Activity implements View.OnTouchListener {
+public class Bj_info_sr_activity extends Activity implements
+		View.OnTouchListener {
 
 	private Spinner spinner;
 	private ArrayAdapter<String> adapter;
 	private static final String[] m = { "还信用卡", "生活开支", "娱乐活动", "送礼", "其他" };
 
 	private EditText editdate;
-	private Button zcbc,qx;
+	private Button zcbc, qx;
 	private EditText sj, je, bz;
 	private Spinner lx;
-	private int id;
-	
+	private String id;
+	private String op;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.xz_info);
+
+		setContentView(R.layout.bj_info_sr);
+		// Toast.makeText(Bj_info_sr_activity.this, "111",
+		// Toast.LENGTH_LONG).show();
 		spinner = (Spinner) findViewById(R.id.Spinner01);
 		adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, m);
@@ -69,14 +71,31 @@ public class Xz_info_activity extends Activity implements View.OnTouchListener {
 		bz = (EditText) findViewById(R.id.et_bz);
 		lx = (Spinner) findViewById(R.id.Spinner01);
 
-	
+		Intent intent = getIntent();
 
+		id = intent.getStringExtra("id");
+		// Toast.makeText(Bj_info_activity.this, intent.getStringExtra("id"),
+		// Toast.LENGTH_LONG).show();
+		je.setText(intent.getStringExtra("Money")); // Type
+		sj.setText(intent.getStringExtra("Time"));
+		bz.setText(intent.getStringExtra("Depict"));
+		if (intent.getStringExtra("Type").equals("还信用卡")) {
+			lx.setSelection(0, true);
+		} else if (intent.getStringExtra("Type").equals("生活开支")) {
+			lx.setSelection(1, true);
+		} else if (intent.getStringExtra("Type").equals("娱乐活动")) {
+			lx.setSelection(2, true);
+		} else if (intent.getStringExtra("Type").equals("送礼")) {
+			lx.setSelection(3, true);
+		} else {
+			lx.setSelection(4, true);
+		}
 		qx.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
-				Die(je,sj,bz,editdate,zcbc,qx,lx,spinner);
+				Die(je, sj, bz, editdate, zcbc, qx, lx, spinner);
 				finish();
 			}
 		});
@@ -86,35 +105,59 @@ public class Xz_info_activity extends Activity implements View.OnTouchListener {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+
 				String money = je.getText().toString();
 				if (!money.isEmpty()) {
-					OutaccountDAO outinfo = new OutaccountDAO(Xz_info_activity.this);
-					Tb_outaccount tb_outaccount = new Tb_outaccount(
-							outinfo.getMaxId() + 1, Double.parseDouble(money),
-							sj.getText().toString(),
-							lx.getSelectedItem().toString(), null,
-							bz.getText().toString());
-					outinfo.add(tb_outaccount);
+					InaccountDAO outinfo = new InaccountDAO(
+							Bj_info_sr_activity.this);
 
-					Toast.makeText(Xz_info_activity.this, "新增成功", Toast.LENGTH_LONG).show();
-				
-			
-					Die(je,sj,bz,editdate,zcbc,qx,lx,spinner);
+					Tb_inaccount Tb_inaccount = new Tb_inaccount(Integer
+							.parseInt(id), Double.parseDouble(money), sj
+							.getText().toString(), lx.getSelectedItem()
+							.toString(), null, bz.getText().toString());
+
+					outinfo.update(Tb_inaccount);
+
+					Toast.makeText(Bj_info_sr_activity.this, "修改成功",
+							Toast.LENGTH_LONG).show();
+
+					Die(je, sj, bz, editdate, zcbc, qx, lx, spinner);
+
 					finish();
-					
-				} 
-
+				} else {
+					Toast.makeText(Bj_info_sr_activity.this, "金额不能为空!",
+							Toast.LENGTH_LONG).show();
+				}
 			}
-			
 
 		});
 
 	}
-	public void Die(EditText et,EditText et1,EditText et2,EditText et3,Button btn,Button btn2,Spinner sp,Spinner sp1){
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		ActivityManager.getActivityManager().pushActivity(this);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		ActivityManager.getActivityManager().popActivity(this);
+	}
+
+	public void Die(EditText et, EditText et1, EditText et2, EditText et3,
+			Button btn, Button btn2, Spinner sp, Spinner sp1) {
 		et = null;
+		et1 = null;
+		et2 = null;
+		et3 = null;
+		btn2 = null;
+		sp1 = null;
 		btn = null;
 		sp = null;
-}
+	}
+
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {

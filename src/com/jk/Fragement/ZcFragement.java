@@ -1,9 +1,6 @@
 package com.jk.Fragement;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -12,8 +9,6 @@ import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jk.activity.Bj_info_activity;
-import com.jk.activity.Xz_info_activity;
+import com.jk.activity.Bj_info_zc_activity;
 import com.jk.dao.OutaccountDAO;
 import com.jk.model.Tb_outaccount;
 import com.patrickstar.slidingmenudemo.R;
@@ -34,14 +28,9 @@ public class ZcFragement extends Fragment {
 
 	
 
-	public int getOp() {
-		return op;
-	}
 
-	public void setOp(int op) {
-		this.op = op;
-	}
 
+	
 	private View mView;
 	private ListView lv_show;
 	private Button btn_tj;
@@ -51,7 +40,7 @@ public class ZcFragement extends Fragment {
 	private Button btn_bc;
 	private Button zcbc;
 	private MyAdapter adapter;
-	private int op = 0;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,7 +68,8 @@ public class ZcFragement extends Fragment {
 		lv_show.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 		lv_show.setOnCreateContextMenuListener(this);
-
+		
+		
 	}
 
 	@Override
@@ -96,31 +86,8 @@ public class ZcFragement extends Fragment {
 		position = info.position;
 	}
 
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		menu.clear();
-		MenuInflater inflatermenu = new MenuInflater(getActivity());
-
-		if(op == 0){
-		inflatermenu.inflate(R.menu.menu1, menu);
-		op = 1;
-		}
-
-		super.onCreateOptionsMenu(menu, inflatermenu);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.item1) {
-			Intent intent = null;
-			intent = new Intent(getActivity(), Xz_info_activity.class);
-
-			startActivityForResult(intent, 1);
-			/* Toast.makeText(getActivity(), "asdas", Toast.LENGTH_LONG).show(); */
-		}
-
-		return super.onOptionsItemSelected(item);
-	}
+	
+	
 
 	@Override
 	public void onResume() {
@@ -147,7 +114,7 @@ public class ZcFragement extends Fragment {
 		switch (item.getItemId()) {
 		case 1:// 编辑
 				// 1. 显示更新的Dialog
-			objIntent = new Intent(getActivity(), Bj_info_activity.class);
+			objIntent = new Intent(getActivity(), Bj_info_zc_activity.class);
 
 			// Toast.makeText(getActivity(),id +"____"+ tb_outaccount.getid(),
 			// Toast.LENGTH_LONG).show();
@@ -162,7 +129,9 @@ public class ZcFragement extends Fragment {
 			objIntent.putExtra("Type", tb_outaccount.getType());
 			objIntent.putExtra("Address", tb_outaccount.getAddress());
 			objIntent.putExtra("Depict", tb_outaccount.getMark());
-			startActivityForResult(objIntent, 2);
+			
+			objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			startActivity(objIntent);
 
 			break;
 
@@ -234,7 +203,7 @@ public class ZcFragement extends Fragment {
 			if (convertView == null) {
 				holder = new ViewHolder();
 				// 根据自定义的Item布局加载布局
-				convertView = mInflater.inflate(R.layout.list_item, null);
+				convertView = mInflater.inflate(R.layout.list_item_2, null);
 				holder.tv_type = (TextView) convertView
 						.findViewById(R.id.tv_type);
 				holder.tv_money = (TextView) convertView
@@ -249,7 +218,7 @@ public class ZcFragement extends Fragment {
 			}
 			Tb_outaccount tb_outaccount = data.get(position);
 			holder.tv_type.setText(tb_outaccount.getType());
-			holder.tv_money.setText(tb_outaccount.getMoney() + "");
+			holder.tv_money.setText("￥-"+tb_outaccount.getMoney() + "");
 			holder.tv_data.setText(tb_outaccount.getTime());
 
 			return convertView;
