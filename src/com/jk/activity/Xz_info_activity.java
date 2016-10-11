@@ -86,24 +86,25 @@ public class Xz_info_activity extends Activity implements View.OnTouchListener {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				
-				
-				
-				Intent objIntent = new Intent();
-				objIntent.putExtra("Money", je.getText().toString());
-				objIntent.putExtra("Time", sj.getText().toString());
-				objIntent.putExtra("Type", lx.getSelectedItem().toString());
-				objIntent.putExtra("Depict", bz.getText().toString());
+				String money = je.getText().toString();
+				if (!money.isEmpty()) {
+					OutaccountDAO outinfo = new OutaccountDAO(Xz_info_activity.this);
+					Tb_outaccount tb_outaccount = new Tb_outaccount(
+							outinfo.getMaxId() + 1, Double.parseDouble(money),
+							sj.getText().toString(),
+							lx.getSelectedItem().toString(), null,
+							bz.getText().toString());
+					outinfo.add(tb_outaccount);
 
+					Toast.makeText(Xz_info_activity.this, "新增成功", Toast.LENGTH_LONG).show();
 				
-					//Toast.makeText(Xz_info_activity.this, "我是新增", Toast.LENGTH_LONG).show();
-					setResult(1, objIntent);
+			
 					Die(je,sj,bz,editdate,zcbc,qx,lx,spinner);
 					finish();
 					
 				} 
 
-				
+			}
 			
 
 		});

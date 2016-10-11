@@ -103,14 +103,20 @@ public class Bj_info_activity extends Activity implements View.OnTouchListener {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 
-				Intent objIntent = new Intent();
-				objIntent.putExtra("id", id);
-				objIntent.putExtra("Money", je.getText().toString());
-				objIntent.putExtra("Time", sj.getText().toString());
-				objIntent.putExtra("Type", lx.getSelectedItem().toString());
-				objIntent.putExtra("Depict", bz.getText().toString());
+				String money = je.getText().toString();
 
-				setResult(2, objIntent);
+				OutaccountDAO outinfo = new OutaccountDAO(Bj_info_activity.this);
+
+				Tb_outaccount tb_outaccount = new Tb_outaccount(
+						Integer.parseInt(id),
+						Double.parseDouble(money), sj.getText().toString(),
+						lx.getSelectedItem().toString(), null,
+						bz.getText().toString());
+
+				outinfo.update(tb_outaccount);
+
+				Toast.makeText(Bj_info_activity.this, "修改成功", Toast.LENGTH_LONG).show();
+				
 				Die(je, sj, bz, editdate, zcbc, qx, lx, spinner);
 				finish();
 			}
@@ -122,6 +128,11 @@ public class Bj_info_activity extends Activity implements View.OnTouchListener {
 	public void Die(EditText et, EditText et1, EditText et2, EditText et3,
 			Button btn, Button btn2, Spinner sp, Spinner sp1) {
 		et = null;
+		et1 = null;
+		et2 = null;
+		et3 =null;
+		btn2 = null;
+		sp1 = null;
 		btn = null;
 		sp = null;
 	}

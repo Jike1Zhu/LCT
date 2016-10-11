@@ -32,6 +32,8 @@ import com.patrickstar.slidingmenudemo.R;
 
 public class ZcFragement extends Fragment {
 
+	
+
 	public int getOp() {
 		return op;
 	}
@@ -120,6 +122,19 @@ public class ZcFragement extends Fragment {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		//Toast.makeText(getActivity(), "asdas", Toast.LENGTH_LONG).show();
+		if(lv_show != null){
+		lv_show.setAdapter(null);
+		OutaccountDAO outinfo = new OutaccountDAO(getActivity());
+		data = outinfo.getScrollData(0, (int) outinfo.getCount());// getData();
+		adapter = new MyAdapter(getActivity());
+		lv_show.setAdapter(adapter);
+		}
+		super.onResume();
+	}
 	/**
 	 * 长按之后的按钮事件
 	 */
@@ -168,41 +183,7 @@ public class ZcFragement extends Fragment {
 		return super.onContextItemSelected(item);
 	}
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO 自动生成的方法存根
-		if (requestCode == 1 && resultCode == 1) {
-			String money = data.getStringExtra("Money");
-			if (!money.isEmpty()) {
-				OutaccountDAO outinfo = new OutaccountDAO(getActivity());
-				Tb_outaccount tb_outaccount = new Tb_outaccount(
-						outinfo.getMaxId() + 1, Double.parseDouble(money),
-						data.getStringExtra("Time"),
-						data.getStringExtra("Type"), null,
-						data.getStringExtra("Depict"));
-				outinfo.add(tb_outaccount);
 
-				Toast.makeText(getActivity(), "新增成功", Toast.LENGTH_LONG).show();
-				adapter.notifyDataSetChanged();
-			}
-		} else if (requestCode == 2 && resultCode == 2) {
-			String money = data.getStringExtra("Money");
-
-			OutaccountDAO outinfo = new OutaccountDAO(getActivity());
-
-			Tb_outaccount tb_outaccount = new Tb_outaccount(
-					Integer.parseInt(data.getStringExtra("id")),
-					Double.parseDouble(money), data.getStringExtra("Time"),
-					data.getStringExtra("Type"), null,
-					data.getStringExtra("Depict"));
-
-			outinfo.update(tb_outaccount);
-
-			Toast.makeText(getActivity(), "修改成功", Toast.LENGTH_LONG).show();
-			adapter.notifyDataSetChanged();
-		}
-		super.onActivityResult(requestCode, resultCode, data);
-	}
 
 	// ViewHolder静态类
 	static class ViewHolder {
