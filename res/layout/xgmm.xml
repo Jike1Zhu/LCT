@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@drawable/zhmm">
 
     <RelativeLayout
         android:id="@+id/right"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#FF0F0F"        
+        android:layout_marginTop="0dp"
+        android:background="@drawable/nr"   
        >
 
       

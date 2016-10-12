@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class ZcFragement extends Fragment {
 	private Button btn_bc;
 	private Button zcbc;
 	private MyAdapter adapter;
+	private LinearLayout zc_bg;
 	
 
 	@Override
@@ -57,6 +59,8 @@ public class ZcFragement extends Fragment {
 	private void initView(LayoutInflater inflater, ViewGroup container) {
 		mView = inflater.inflate(R.layout.zc, container, false);
 		lv_show = (ListView) mView.findViewById(R.id.lv_show);
+		zc_bg = (LinearLayout) mView.findViewById(R.id.zc_bg);
+		zc_bg.setAlpha(100);
 		/*
 		 * btn_tj = (Button) mView.findViewById(R.id.btn_tj);
 		 * btn_tj.setVisibility(1);

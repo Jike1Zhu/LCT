@@ -12,16 +12,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jk.activity.ActivityManager;
-import com.jk.activity.Bj_info_sr_activity;
-import com.jk.activity.Bj_info_zc_activity;
-import com.jk.activity.Xz_info_zc_activity;
 import com.jk.activity.Xz_info_sr_activity;
-import com.jk.activity.bq_bj_content_activity;
+import com.jk.activity.Xz_info_zc_activity;
 import com.jk.activity.bq_content_activity;
 import com.patrickstar.slidingmenudemo.R;
 
@@ -37,6 +34,7 @@ public class MainActivity extends FragmentActivity {
 	private int zt = 0;
 	private ImageButton img_btn;
 	private FrameLayout flayout;
+	
 	private static Boolean isExit = false;
 
 	@Override
@@ -47,9 +45,9 @@ public class MainActivity extends FragmentActivity {
 		
 		flayout = (FrameLayout) findViewById(R.id.flayout);
 		img_btn = (ImageButton) findViewById(R.id.img_btn);
+		
 		img_btn.setVisibility(View.INVISIBLE);
-		ZcFragement zc = new ZcFragement();
-		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
+		
 		SlidingMenu menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
 		// 设置触摸屏幕的模式

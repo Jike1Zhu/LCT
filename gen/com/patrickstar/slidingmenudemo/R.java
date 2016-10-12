@@ -24,17 +24,30 @@ public final class R {
         public static final int slidingmenu_offset=0x7f040003;
     }
     public static final class drawable {
-        public static final int bg1=0x7f020000;
-        public static final int bq=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int list_bg=0x7f020003;
-        public static final int menu=0x7f020004;
-        public static final int shadow=0x7f020005;
-        public static final int sr=0x7f020006;
-        public static final int tc=0x7f020007;
-        public static final int title_bg=0x7f020008;
-        public static final int xt=0x7f020009;
-        public static final int zc=0x7f02000a;
+        public static final int aaa=0x7f020000;
+        public static final int bg=0x7f020001;
+        public static final int bq=0x7f020002;
+        public static final int bqgl=0x7f020003;
+        public static final int btn=0x7f020004;
+        public static final int button=0x7f020005;
+        public static final int corners_bg=0x7f020006;
+        public static final int dl=0x7f020007;
+        public static final int fm=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int left=0x7f02000a;
+        public static final int list_bg=0x7f02000b;
+        public static final int menu=0x7f02000c;
+        public static final int nr=0x7f02000d;
+        public static final int shadow=0x7f02000e;
+        public static final int sr=0x7f02000f;
+        public static final int sr11=0x7f020010;
+        public static final int tc=0x7f020011;
+        public static final int titlebarbg=0x7f020012;
+        public static final int ttt=0x7f020013;
+        public static final int xt=0x7f020014;
+        public static final int zc=0x7f020015;
+        public static final int zcgl=0x7f020016;
+        public static final int zhmm=0x7f020017;
     }
     public static final class id {
         public static final int LL_1=0x7f080004;
@@ -42,7 +55,7 @@ public final class R {
         public static final int LL_3=0x7f08000a;
         public static final int LL_4=0x7f08000d;
         public static final int Spinner01=0x7f08000c;
-        public static final int action_settings=0x7f080035;
+        public static final int action_settings=0x7f080036;
         public static final int bc=0x7f080011;
         public static final int bq_item=0x7f080015;
         public static final int bq_lv=0x7f080014;
@@ -61,8 +74,8 @@ public final class R {
         public static final int img_tc=0x7f080024;
         public static final int img_xt=0x7f080022;
         public static final int img_zc=0x7f080019;
-        public static final int item1=0x7f080036;
-        public static final int item2=0x7f080037;
+        public static final int item1=0x7f080037;
+        public static final int item2=0x7f080038;
         public static final int je=0x7f080005;
         public static final int ll_bq=0x7f08001e;
         public static final int ll_sr=0x7f08001b;
@@ -92,6 +105,7 @@ public final class R {
         public static final int tv_xtsz=0x7f080023;
         public static final int tv_zc=0x7f08001a;
         public static final int vv=0x7f08002b;
+        public static final int zc_bg=0x7f080035;
         public static final int zhmm=0x7f08002c;
     }
     public static final class layout {

@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg1" >
+    android:background="@drawable/nr" >
 
     <RelativeLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#FF0F0F" >
+        android:background="@drawable/ttt" >
 
         <TextView
             android:layout_width="wrap_content"

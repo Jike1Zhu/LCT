@@ -46,7 +46,7 @@ public class bq_content_activity extends Activity {
 							Toast.LENGTH_LONG).show();
 
 					finish();
-					System.exit(0);
+					
 				} else {
 					Toast.makeText(bq_content_activity.this, "内容为空",
 							Toast.LENGTH_LONG).show();

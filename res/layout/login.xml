@@ -2,47 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-     >
-      <RelativeLayout
-        android:id="@+id/right"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#FF0F0F"        
-       >
+    android:background="@drawable/fm"
+    android:orientation="vertical" >
 
-      
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="家庭理财通" 
-                android:layout_centerInParent="true"
-                android:textSize="18sp"
-                />
-
-          
-       
-    </RelativeLayout>
+   
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical" 
-        android:layout_marginTop="100dp">
+        android:orientation="vertical" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="家庭理财通"
-            android:textSize="24sp" 
-           	/>
+            android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="100dp" >
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal" >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -51,9 +33,10 @@
             <EditText
                 android:id="@+id/pwd"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content" 
-                android:password="true"
-                android:maxLines="1"/>
+                android:layout_height="wrap_content"
+                
+                android:maxLines="1"
+                android:password="true" />
         </LinearLayout>
 
         <Button
@@ -61,12 +44,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:background="@drawable/btn"
             android:text="登陆" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:layout_marginTop="50dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp" >
 
             <TextView
                 android:id="@+id/vv"
@@ -79,9 +63,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/vv"
-                android:textStyle="bold"
-                android:text="找回密码" 
-                android:textColor="#87CEFA"/>
+                android:text="找回密码"
+                android:textColor="#87CEFA"
+                android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
 
