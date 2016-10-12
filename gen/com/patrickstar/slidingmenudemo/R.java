@@ -24,30 +24,24 @@ public final class R {
         public static final int slidingmenu_offset=0x7f040003;
     }
     public static final class drawable {
-        public static final int aaa=0x7f020000;
+        public static final int add=0x7f020000;
         public static final int bg=0x7f020001;
-        public static final int bq=0x7f020002;
-        public static final int bqgl=0x7f020003;
-        public static final int btn=0x7f020004;
-        public static final int button=0x7f020005;
-        public static final int corners_bg=0x7f020006;
-        public static final int dl=0x7f020007;
-        public static final int fm=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int left=0x7f02000a;
-        public static final int list_bg=0x7f02000b;
-        public static final int menu=0x7f02000c;
-        public static final int nr=0x7f02000d;
-        public static final int shadow=0x7f02000e;
-        public static final int sr=0x7f02000f;
-        public static final int sr11=0x7f020010;
-        public static final int tc=0x7f020011;
-        public static final int titlebarbg=0x7f020012;
-        public static final int ttt=0x7f020013;
-        public static final int xt=0x7f020014;
-        public static final int zc=0x7f020015;
-        public static final int zcgl=0x7f020016;
-        public static final int zhmm=0x7f020017;
+        public static final int bg_edittext=0x7f020002;
+        public static final int bg_edittext_focused=0x7f020003;
+        public static final int bg_edittext_normal=0x7f020004;
+        public static final int bq=0x7f020005;
+        public static final int btn=0x7f020006;
+        public static final int corners_bg=0x7f020007;
+        public static final int dl=0x7f020008;
+        public static final int fm=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int left=0x7f02000b;
+        public static final int nr=0x7f02000c;
+        public static final int sr=0x7f02000d;
+        public static final int tc=0x7f02000e;
+        public static final int ttt=0x7f02000f;
+        public static final int xt=0x7f020010;
+        public static final int zc=0x7f020011;
     }
     public static final class id {
         public static final int LL_1=0x7f080004;

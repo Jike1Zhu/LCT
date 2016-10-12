@@ -23,8 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true" >
 
-        
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,16 +42,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
-                   
                     android:text="金额" />
 
                 <EditText
                     android:id="@+id/edit_srje"
                     android:layout_width="200dp"
                     android:layout_height="45dp"
+                    android:background="@drawable/bg_edittext"
                     android:hint="请输入金额"
-                    android:background="@android:drawable/edit_text"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="5dip"
+                    android:singleLine="true"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="15dip" />
             </LinearLayout>
 
             <LinearLayout
@@ -74,9 +76,14 @@
                     android:id="@+id/et_rqsj"
                     android:layout_width="200dp"
                     android:layout_height="45dp"
+                    android:background="@drawable/bg_edittext"
                     android:hint="点我选择时间"
-                    android:background="@android:drawable/edit_text"
-                    android:inputType="textMultiLine" />
+                    android:maxLines="1"
+                    android:padding="5dip"
+                    
+                    android:singleLine="true"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="15dip" />
             </LinearLayout>
 
             <LinearLayout
@@ -97,7 +104,8 @@
                 <Spinner
                     android:id="@+id/Spinner01"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content" 
+                    >
                 </Spinner>
             </LinearLayout>
 
@@ -120,13 +128,18 @@
                     android:id="@+id/et_bz"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/edit_text"
-                    android:enabled="true"
-                   android:hint="备注,选填"
+                    android:background="@drawable/bg_edittext"
+                    android:hint="备注,选填"
                     android:inputType="textMultiLine"
+                    
                     android:maxLines="5"
                     android:minLines="3"
-                    android:scrollbars="vertical" >
+                    android:padding="5dip"
+                   
+                    android:scrollbars="vertical"
+                    android:singleLine="true"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="15dip" >
                 </EditText>
             </LinearLayout>
 
@@ -140,13 +153,15 @@
                 <Button
                     android:id="@+id/qx"
                     android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
+                    android:background="@drawable/btn"
                     android:text="取消" />
 
                 <Button
                     android:id="@+id/bc"
                     android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
+                    android:background="@drawable/btn"
                     android:text="保存" />
             </LinearLayout>
         </LinearLayout>

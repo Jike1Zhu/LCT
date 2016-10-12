@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jk.ZDYImgview.XCRoundImageView;
 import com.jk.activity.Xz_info_sr_activity;
 import com.jk.activity.Xz_info_zc_activity;
 import com.jk.activity.bq_content_activity;
@@ -32,9 +33,9 @@ public class MainActivity extends FragmentActivity {
 	private Button btnSecond;
 	private int op = 0;
 	private int zt = 0;
-	private ImageButton img_btn;
+	private View img_btn;
 	private FrameLayout flayout;
-	
+
 	private static Boolean isExit = false;
 
 	@Override
@@ -42,12 +43,15 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		/* requestWindowFeature(Window.FEATURE_NO_TITLE); */
 		setContentView(R.layout.activity_main);
-		
+
 		flayout = (FrameLayout) findViewById(R.id.flayout);
-		img_btn = (ImageButton) findViewById(R.id.img_btn);
-		
+		img_btn = (View) findViewById(R.id.img_btn);
+		flayout.removeAllViews();
+
+		ZcFragement zc = new ZcFragement();
+		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
 		img_btn.setVisibility(View.INVISIBLE);
-		
+
 		SlidingMenu menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
 		// 设置触摸屏幕的模式
@@ -55,7 +59,7 @@ public class MainActivity extends FragmentActivity {
 		// 设置菜单界面与主界面中间分割条的宽度
 		menu.setShadowWidthRes(R.dimen.shadow_width);
 		// 分割条的背景图片
-		menu.setShadowDrawable(R.drawable.shadow);
+		menu.setShadowDrawable(R.drawable.left);
 
 		// 设置滑动菜单视图的宽度
 		menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
@@ -125,43 +129,37 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void Click_zc(View v) {
-		
+
 		op = 1;
 		img_btn.setVisibility(View.VISIBLE);
 		flayout.removeAllViews();
-		
-		
-		
-		
+
 		ZcFragement zc = new ZcFragement();
 		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
 
 	}
 
 	public void Click_sr(View v) {
-		
+
 		op = 2;
 		img_btn.setVisibility(View.VISIBLE);
 		flayout.removeAllViews();
 
-		
 		SrFragement sr = new SrFragement();
 		getFragmentManager().beginTransaction().add(R.id.flayout, sr).commit();
 	}
 
 	public void Click_bq(View v) {
-		
+
 		op = 3;
-		
+
 		img_btn.setVisibility(View.VISIBLE);
 		flayout.removeAllViews();
 
-		
-		
 		BqFragement second = new BqFragement();
 		getFragmentManager().beginTransaction().add(R.id.flayout, second)
 				.commit();
-		
+
 	}
 
 	public void Click_xtsz(View v) {

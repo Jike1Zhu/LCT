@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,10 +21,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-         >
-
-     
+        android:layout_centerVertical="true" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,10 +48,12 @@
                     android:id="@+id/edit_srje"
                     android:layout_width="200dp"
                     android:layout_height="45dp"
-                    android:inputType="number"
+                    android:background="@drawable/bg_edittext"
                     android:hint="请输入金额"
-                    android:background="@android:drawable/edit_text"
-                     />
+                    android:inputType="number"
+                    android:padding="5dip"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="15dip" />
             </LinearLayout>
 
             <LinearLayout
@@ -70,16 +68,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
-                     
                     android:text="时间" />
 
                 <EditText
                     android:id="@+id/et_rqsj"
                     android:layout_width="200dp"
                     android:layout_height="45dp"
-                    android:background="@android:drawable/edit_text"
+                    android:background="@drawable/bg_edittext"
                     android:hint="点我选择时间"
-                    android:inputType="textMultiLine" />
+                    android:inputType="textMultiLine"
+                    android:padding="5dip"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="15dip" />
             </LinearLayout>
 
             <LinearLayout
@@ -123,13 +123,16 @@
                     android:id="@+id/et_bz"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/edit_text"
+                    android:background="@drawable/bg_edittext"
                     android:enabled="true"
-                    android:inputType="textMultiLine"
                     android:hint="备注"
+                    android:inputType="textMultiLine"
                     android:maxLines="5"
                     android:minLines="3"
-                    android:scrollbars="vertical" >
+                    android:padding="5dip"
+                    android:scrollbars="vertical"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="15dip" >
                 </EditText>
             </LinearLayout>
 
@@ -144,12 +147,14 @@
                     android:id="@+id/qx"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/btn"
                     android:text="取消" />
 
                 <Button
                     android:id="@+id/bc"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/btn"
                     android:text="保存" />
             </LinearLayout>
         </LinearLayout>
