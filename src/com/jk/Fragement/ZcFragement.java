@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.jk.activity.Bj_info_zc_activity;
 import com.jk.dao.OutaccountDAO;
 import com.jk.model.Tb_outaccount;
+import com.jk.model.option;
 import com.patrickstar.slidingmenudemo.R;
 
 public class ZcFragement extends Fragment {
@@ -40,7 +41,7 @@ public class ZcFragement extends Fragment {
 	private Button zcbc;
 	private MyAdapter adapter;
 	private LinearLayout zc_bg;
-	public int op;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +64,7 @@ public class ZcFragement extends Fragment {
 		 * btn_tj = (Button) mView.findViewById(R.id.btn_tj);
 		 * btn_tj.setVisibility(1);
 		 */
+		
 		setHasOptionsMenu(true);
 		OutaccountDAO outinfo = new OutaccountDAO(getActivity());
 		data = outinfo.getScrollData(0, (int) outinfo.getCount());// getData();
@@ -73,7 +75,7 @@ public class ZcFragement extends Fragment {
 
 	}
 
-	@Override
+	/*@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -85,7 +87,7 @@ public class ZcFragement extends Fragment {
 		// 得到长按的position
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		position = info.position;
-	}
+	}*/
 
 	@Override
 	public void onResume() {
@@ -104,8 +106,12 @@ public class ZcFragement extends Fragment {
 	/**
 	 * 长按之后的按钮事件
 	 */
-	@Override
+	/*@Override
 	public boolean onContextItemSelected(MenuItem item) {
+		option option = new option();
+		Toast.makeText(getActivity(),option.getOp()+"zc", 100).show();
+		if (getUserVisibleHint() && option.getOp().equals("1")) { 
+			Toast.makeText(getActivity(), getUserVisibleHint()+"zc", 100).show();
 		OutaccountDAO outaccountDAO = new OutaccountDAO(getActivity());
 
 		Tb_outaccount tb_outaccount = data.get(position);
@@ -174,7 +180,9 @@ public class ZcFragement extends Fragment {
 		}
 
 		return super.onContextItemSelected(item);
-	}
+		}
+		return false;
+	}*/
 
 	// ViewHolder静态类
 	static class ViewHolder {

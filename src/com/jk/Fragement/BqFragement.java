@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.jk.activity.bq_bj_content_activity;
 import com.jk.dao.FlagDAO;
 import com.jk.model.Tb_flag;
+import com.jk.model.option;
 import com.patrickstar.slidingmenudemo.R;
 
 public class BqFragement extends Fragment {
@@ -38,7 +39,7 @@ public class BqFragement extends Fragment {
 	private int position;
 
 	private MyAdapter adapter;
-	public int op;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +59,7 @@ public class BqFragement extends Fragment {
 		FlagDAO flagDAO = new FlagDAO(getActivity());
 		data = flagDAO.getScrollData(0, (int) flagDAO.getCount());// getData();
 		adapter = new MyAdapter(getActivity());
+		
 		bq_lv_show.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 		bq_lv_show.setOnCreateContextMenuListener(this);
@@ -99,7 +101,7 @@ public class BqFragement extends Fragment {
 		super.onResume();
 	}
 
-	@Override
+	/*@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -112,74 +114,81 @@ public class BqFragement extends Fragment {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		position = info.position;
 	}
-
-	@Override
+*/
+	/*@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		FlagDAO flagDAO = new FlagDAO(getActivity());
+		option option = new option();
+		if (getUserVisibleHint() && option.getOp().equals("3")) {
+			Toast.makeText(getActivity(), getUserVisibleHint()+"bq", 100).show();
+			FlagDAO flagDAO = new FlagDAO(getActivity());
 
-		Tb_flag tb_flag = data.get(position);
-		Intent objIntent = null;
-		switch (item.getItemId()) {
-		case 1:
-			objIntent = new Intent(getActivity(), bq_bj_content_activity.class);
+			Tb_flag tb_flag = data.get(position);
+			Intent objIntent = null;
+			switch (item.getItemId()) {
+			case 1:
+				objIntent = new Intent(getActivity(),
+						bq_bj_content_activity.class);
 
-			// Toast.makeText(getActivity(),id +"____"+ tb_outaccount.getid(),
-			// Toast.LENGTH_LONG).show();
-			int id = tb_flag.getid();
-			tb_flag = flagDAO.find(id);
+				// Toast.makeText(getActivity(),id +"____"+
+				// tb_outaccount.getid(),
+				// Toast.LENGTH_LONG).show();
+				int id = tb_flag.getid();
+				tb_flag = flagDAO.find(id);
 
-			objIntent.putExtra("id", id + "");
+				objIntent.putExtra("id", id + "");
 
-			objIntent.putExtra("Flag", tb_flag.getFlag());
-			objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-			startActivity(objIntent);
+				objIntent.putExtra("Flag", tb_flag.getFlag());
+				objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(objIntent);
 
-			break;
+				break;
 
-		case 2:// 删除
+			case 2:// 删除
 
-			AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
-					.create();
-			alertDialog.setIcon(R.drawable.key);
-			alertDialog.setTitle("系统提示：");
-			alertDialog.setMessage("是否删除？");
-			alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
-					new OnClickListener() {
+				AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+						.create();
+				alertDialog.setIcon(R.drawable.key);
+				alertDialog.setTitle("系统提示：");
+				alertDialog.setMessage("是否删除？");
+				alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
+						new OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							// TODO Auto-generated method stub
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								// TODO Auto-generated method stub
 
-						}
-					});
-			alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
-					new OnClickListener() {
+							}
+						});
+				alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
+						new OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							// TODO Auto-generated method stub
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								// TODO Auto-generated method stub
 
-							// flagDAO.deleteById(tb_flag.getid() + "");
-							Toast.makeText(getActivity(), "33",
-									Toast.LENGTH_LONG).show();
+								// flagDAO.deleteById(tb_flag.getid() + "");
+								Toast.makeText(getActivity(), "33",
+										Toast.LENGTH_LONG).show();
 
-							// data.remove(position);
+								// data.remove(position);
 
-							adapter.notifyDataSetChanged();
-						}
-					});
-			alertDialog.show();
+								adapter.notifyDataSetChanged();
+							}
+						});
+				alertDialog.show();
 
-			break;
+				break;
 
-		default:
-			break;
+			default:
+				break;
 
+			}
+
+			return super.onContextItemSelected(item);
 		}
-
-		return super.onContextItemSelected(item);
+		return false;
 	}
-
+*/
 	// ViewHolder静态类
 	static class ViewHolder {
 		public TextView tv_bq_item;

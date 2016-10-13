@@ -25,14 +25,11 @@ import android.widget.Toast;
 import com.jk.activity.Bj_info_sr_activity;
 import com.jk.dao.InaccountDAO;
 import com.jk.model.Tb_inaccount;
+import com.jk.model.option;
 import com.patrickstar.slidingmenudemo.R;
 
 public class SrFragement extends Fragment {
 
-	
-
-
-	
 	private View mView;
 	private ListView lv_show;
 	private Button btn_tj;
@@ -42,14 +39,13 @@ public class SrFragement extends Fragment {
 	private Button btn_bc;
 	private Button zcbc;
 	private MyAdapter adapter;
-	public int op;
 	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		
+
 		if (mView == null) {
 			initView(inflater, container);
 		}
@@ -72,11 +68,10 @@ public class SrFragement extends Fragment {
 		lv_show.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 		lv_show.setOnCreateContextMenuListener(this);
-		
-		
+
 	}
 
-	@Override
+	/*@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -88,99 +83,102 @@ public class SrFragement extends Fragment {
 		// 得到长按的position
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		position = info.position;
-	}
-
-	
-	
+	}*/
 
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
-		//Toast.makeText(getActivity(), "asdas", Toast.LENGTH_LONG).show();
-		if(lv_show != null){
-		lv_show.setAdapter(null);
-		InaccountDAO outinfo = new InaccountDAO(getActivity());
-		data = outinfo.getScrollData(0, (int) outinfo.getCount());// getData();
-		adapter = new MyAdapter(getActivity());
-		lv_show.setAdapter(adapter);
+		// Toast.makeText(getActivity(), "asdas", Toast.LENGTH_LONG).show();
+		if (lv_show != null) {
+			lv_show.setAdapter(null);
+			InaccountDAO outinfo = new InaccountDAO(getActivity());
+			data = outinfo.getScrollData(0, (int) outinfo.getCount());// getData();
+			adapter = new MyAdapter(getActivity());
+			lv_show.setAdapter(adapter);
 		}
 		super.onResume();
 	}
+
 	/**
 	 * 长按之后的按钮事件
-	 */
+	 *//*
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		InaccountDAO InaccountDAO = new InaccountDAO(getActivity());
+		option option = new option();
+		if (getUserVisibleHint() && option.getOp().equals("2")) {
+			Toast.makeText(getActivity(), getUserVisibleHint()+"sr", 100).show();
+			InaccountDAO InaccountDAO = new InaccountDAO(getActivity());
 
-		Tb_inaccount Tb_inaccount = data.get(position);
-		Intent objIntent = null;
-		switch (item.getItemId()) {
-		case 1:// 编辑
-				// 1. 显示更新的Dialog
-			objIntent = new Intent(getActivity(), Bj_info_sr_activity.class);
+			Tb_inaccount Tb_inaccount = data.get(position);
+			Intent objIntent = null;
+			switch (item.getItemId()) {
+			case 1:// 编辑
+					// 1. 显示更新的Dialog
+				objIntent = new Intent(getActivity(), Bj_info_sr_activity.class);
 
-			// Toast.makeText(getActivity(),id +"____"+ Tb_inaccount.getid(),
-			// Toast.LENGTH_LONG).show();
-			int id = Tb_inaccount.getid();
+				// Toast.makeText(getActivity(),id +"____"+
+				// Tb_inaccount.getid(),
+				// Toast.LENGTH_LONG).show();
+				int id = Tb_inaccount.getid();
 
-			Tb_inaccount = InaccountDAO.find(id);
+				Tb_inaccount = InaccountDAO.find(id);
 
-			objIntent.putExtra("id", id + "");
+				objIntent.putExtra("id", id + "");
 
-			objIntent.putExtra("Money", Tb_inaccount.getMoney() + "");
-			objIntent.putExtra("Time", Tb_inaccount.getTime());
-			objIntent.putExtra("Type", Tb_inaccount.getType());
-			
-			objIntent.putExtra("Depict", Tb_inaccount.getMark());
-			objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-			startActivity(objIntent);
+				objIntent.putExtra("Money", Tb_inaccount.getMoney() + "");
+				objIntent.putExtra("Time", Tb_inaccount.getTime());
+				objIntent.putExtra("Type", Tb_inaccount.getType());
 
-			break;
+				objIntent.putExtra("Depict", Tb_inaccount.getMark());
+				objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(objIntent);
 
-		case 2:// 删除
+				break;
 
-			AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
-			.create();
-	alertDialog.setIcon(R.drawable.key);
-	alertDialog.setTitle("系统提示：");
-	alertDialog.setMessage("是否删除？");
-	alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
-			new OnClickListener() {
+			case 2:// 删除
 
-				@Override
-				public void onClick(DialogInterface arg0, int arg1) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
-	alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
-			new OnClickListener() {
+				AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+						.create();
+				alertDialog.setIcon(R.drawable.key);
+				alertDialog.setTitle("系统提示：");
+				alertDialog.setMessage("是否删除？");
+				alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
+						new OnClickListener() {
 
-				@Override
-				public void onClick(DialogInterface arg0, int arg1) {
-					// TODO Auto-generated method stub
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								// TODO Auto-generated method stub
 
+							}
+						});
+				alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
+						new OnClickListener() {
 
-					//InaccountDAO.deleteById(Tb_inaccount.getid() + "");
-					Toast.makeText(getActivity(), "222", Toast.LENGTH_LONG).show();
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								// TODO Auto-generated method stub
 
-					//data.remove(position);
+								// InaccountDAO.deleteById(Tb_inaccount.getid()
+								// + "");
+								Toast.makeText(getActivity(), "222",
+										Toast.LENGTH_LONG).show();
 
-					adapter.notifyDataSetChanged();
-				}
-			});
-	alertDialog.show();
-			break;
+								// data.remove(position);
 
-		default:
-			break;
+								adapter.notifyDataSetChanged();
+							}
+						});
+				alertDialog.show();
+				break;
+
+			default:
+				break;
+			}
+
+			return super.onContextItemSelected(item);
 		}
-
-		return super.onContextItemSelected(item);
-	}
-
-
+		return false;
+	}*/
 
 	// ViewHolder静态类
 	static class ViewHolder {
@@ -246,7 +244,7 @@ public class SrFragement extends Fragment {
 			}
 			Tb_inaccount Tb_inaccount = data.get(position);
 			holder.tv_type.setText(Tb_inaccount.getType());
-			holder.tv_money.setText("￥+"+Tb_inaccount.getMoney() + "");
+			holder.tv_money.setText("￥+" + Tb_inaccount.getMoney() + "");
 			holder.tv_data.setText(Tb_inaccount.getTime());
 
 			return convertView;

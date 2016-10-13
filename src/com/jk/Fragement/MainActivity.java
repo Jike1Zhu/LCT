@@ -1,26 +1,41 @@
 package com.jk.Fragement;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jk.ZDYImgview.XCRoundImageView;
+import com.jk.activity.Bj_info_sr_activity;
+import com.jk.activity.Bj_info_zc_activity;
 import com.jk.activity.Xz_info_sr_activity;
 import com.jk.activity.Xz_info_zc_activity;
+import com.jk.activity.bq_bj_content_activity;
 import com.jk.activity.bq_content_activity;
+import com.jk.dao.FlagDAO;
+import com.jk.dao.InaccountDAO;
+import com.jk.dao.OutaccountDAO;
+import com.jk.model.Tb_flag;
+import com.jk.model.Tb_inaccount;
+import com.jk.model.Tb_outaccount;
+import com.jk.model.option;
 import com.patrickstar.slidingmenudemo.R;
 
 /*
@@ -31,11 +46,16 @@ public class MainActivity extends FragmentActivity {
 
 	private TextView tv_zcgl;
 	private Button btnSecond;
-	private int op = 0;
+	private int op = 1;
 	private int zt = 0;
 	private View img_btn;
 	private FrameLayout flayout;
-
+	private int position1;
+	private int position2;
+	private int position3;
+	private List<Tb_outaccount> data1;
+	private List<Tb_inaccount> data2;
+	private List<Tb_flag> data3;
 	private static Boolean isExit = false;
 
 	@Override
@@ -100,6 +120,140 @@ public class MainActivity extends FragmentActivity {
 			}
 		});
 
+	
+			OutaccountDAO outinfo = new OutaccountDAO(MainActivity.this);
+			data1 = outinfo.getScrollData(0, (int) outinfo.getCount());
+
+		
+			InaccountDAO objInaccountDAO = new InaccountDAO(MainActivity.this);
+			data2 = objInaccountDAO.getScrollData(0, (int) objInaccountDAO.getCount());
+			 Toast.makeText(MainActivity.this, data2.size()+"",
+			 Toast.LENGTH_LONG).show();
+		
+			FlagDAO flagDAO = new FlagDAO(MainActivity.this);
+			data3 = flagDAO.getScrollData(0, (int) flagDAO.getCount());
+		
+
+	}
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		 
+		// 添加2个item
+
+		menu.add(0, 1, 0, "编辑");
+		menu.add(0, 2, 0, "删除");
+
+		// 得到长按的position
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+		if(op == 1){
+			position1 = info.position;
+		}else if(op == 2){
+			position2 = info.position;
+		}else if(op == 3){
+			position3 = info.position;
+		}
+		
+		
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+
+		Intent objIntent = null;
+		switch (item.getItemId()) {
+		case 1:// 编辑
+				// 1. 显示更新的Dialog
+
+			if (op == 1) {
+				objIntent = new Intent(MainActivity.this,
+						Bj_info_zc_activity.class);
+				OutaccountDAO outaccountDAO = new OutaccountDAO(
+						MainActivity.this);
+				
+				Tb_outaccount tb_outaccount = data1.get(position1);
+				
+				int id = tb_outaccount.getid();
+
+				tb_outaccount = outaccountDAO.find(id);
+
+				objIntent.putExtra("id", id + "");
+
+				objIntent.putExtra("Money", tb_outaccount.getMoney() + "");
+				objIntent.putExtra("Time", tb_outaccount.getTime());
+				objIntent.putExtra("Type", tb_outaccount.getType());
+				objIntent.putExtra("Address", tb_outaccount.getAddress());
+				objIntent.putExtra("Depict", tb_outaccount.getMark());
+
+				// objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(objIntent);
+			} else if (op == 2) {
+				InaccountDAO InaccountDAO = new InaccountDAO(MainActivity.this);
+
+				
+				Tb_inaccount Tb_inaccount = data2.get(position2);
+				
+				Toast.makeText(MainActivity.this, position2+"", Toast.LENGTH_LONG).show();
+				/*objIntent = new Intent(MainActivity.this,Bj_info_sr_activity.class);
+
+				int id = Tb_inaccount.getid();
+
+				Tb_inaccount = InaccountDAO.find(id);
+
+				objIntent.putExtra("id", id + "");
+
+				objIntent.putExtra("Money", Tb_inaccount.getMoney() + "");
+				objIntent.putExtra("Time", Tb_inaccount.getTime());
+				objIntent.putExtra("Type", Tb_inaccount.getType());
+
+				objIntent.putExtra("Depict", Tb_inaccount.getMark());
+				// objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(objIntent);*/
+			} else if (op == 3) {
+				FlagDAO flagDAO = new FlagDAO(MainActivity.this);
+
+				/*Tb_flag tb_flag = data3.get(position);
+				objIntent = new Intent(MainActivity.this,bq_bj_content_activity.class);
+
+				int id = tb_flag.getid();
+				tb_flag = flagDAO.find(id);
+
+				objIntent.putExtra("id", id + "");
+
+				objIntent.putExtra("Flag", tb_flag.getFlag());
+				//objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(objIntent);*/
+			}
+
+			// Toast.makeText(getActivity(),id +"____"+ tb_outaccount.getid(),
+			// Toast.LENGTH_LONG).show();
+
+			break;
+
+		case 2:// 删除
+			Builder bundle = new AlertDialog.Builder(MainActivity.this);
+			bundle.setTitle("提示：");
+			bundle.setMessage("确定要关闭吗？");
+			bundle.setPositiveButton("确定",
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+
+						}
+					});
+			bundle.setNegativeButton("取消", null);
+			bundle.create().show();
+			break;
+
+		default:
+			break;
+		}
+
+		return super.onContextItemSelected(item);
+
 	}
 
 	@Override
@@ -135,7 +289,8 @@ public class MainActivity extends FragmentActivity {
 		flayout.removeAllViews();
 
 		ZcFragement zc = new ZcFragement();
-		zc.op = 1;
+		option option = new option();
+		option.setOp("3");
 		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
 
 	}
@@ -147,7 +302,8 @@ public class MainActivity extends FragmentActivity {
 		flayout.removeAllViews();
 
 		SrFragement sr = new SrFragement();
-		sr.op = 2;
+		option option = new option();
+		option.setOp("3");
 		getFragmentManager().beginTransaction().add(R.id.flayout, sr).commit();
 	}
 
@@ -159,7 +315,8 @@ public class MainActivity extends FragmentActivity {
 		flayout.removeAllViews();
 
 		BqFragement second = new BqFragement();
-		second.op = 3;
+		option option = new option();
+		option.setOp("3");
 		getFragmentManager().beginTransaction().add(R.id.flayout, second)
 				.commit();
 
