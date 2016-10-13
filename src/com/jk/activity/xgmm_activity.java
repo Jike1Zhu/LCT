@@ -32,10 +32,13 @@ public class xgmm_activity extends Activity{
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
 				PwdDAO objPwdDAO = new PwdDAO(xgmm_activity.this);
-				if (mm_xmm.getText().equals(mm_qrmm.getText())) {
+				if (mm_xmm.getText().toString().equals(mm_qrmm.getText().toString())) {
 					Tb_pwd objtb_pwd = new Tb_pwd(mm_xmm.getText().toString());
 					objPwdDAO.update(objtb_pwd);
 					Toast.makeText(xgmm_activity.this, "修改成功！", Toast.LENGTH_LONG).show();
+					finish();
+				}else{
+					Toast.makeText(xgmm_activity.this, "两次输入的密码不一致！", Toast.LENGTH_LONG).show();
 				}
 				
 				

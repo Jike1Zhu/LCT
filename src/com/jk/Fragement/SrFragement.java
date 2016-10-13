@@ -2,9 +2,12 @@ package com.jk.Fragement;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -39,6 +42,7 @@ public class SrFragement extends Fragment {
 	private Button btn_bc;
 	private Button zcbc;
 	private MyAdapter adapter;
+	public int op;
 	
 
 	@Override
@@ -55,7 +59,7 @@ public class SrFragement extends Fragment {
 
 	private void initView(LayoutInflater inflater, ViewGroup container) {
 		mView = inflater.inflate(R.layout.sr, container, false);
-		lv_show = (ListView) mView.findViewById(R.id.lv_show);
+		lv_show = (ListView) mView.findViewById(R.id.lv_show_sr);
 		/*
 		 * btn_tj = (Button) mView.findViewById(R.id.btn_tj);
 		 * btn_tj.setVisibility(1);
@@ -122,7 +126,7 @@ public class SrFragement extends Fragment {
 
 			Tb_inaccount = InaccountDAO.find(id);
 
-			objIntent.putExtra("id", Tb_inaccount.getid() + "");
+			objIntent.putExtra("id", id + "");
 
 			objIntent.putExtra("Money", Tb_inaccount.getMoney() + "");
 			objIntent.putExtra("Time", Tb_inaccount.getTime());
@@ -136,12 +140,37 @@ public class SrFragement extends Fragment {
 
 		case 2:// 删除
 
-			InaccountDAO.deleteById(Tb_inaccount.getid() + "");
-			Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_LONG).show();
+			AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+			.create();
+	alertDialog.setIcon(R.drawable.key);
+	alertDialog.setTitle("系统提示：");
+	alertDialog.setMessage("是否删除？");
+	alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
+			new OnClickListener() {
 
-			data.remove(position);
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+	alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
+			new OnClickListener() {
 
-			adapter.notifyDataSetChanged();
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					// TODO Auto-generated method stub
+
+
+					//InaccountDAO.deleteById(Tb_inaccount.getid() + "");
+					Toast.makeText(getActivity(), "222", Toast.LENGTH_LONG).show();
+
+					//data.remove(position);
+
+					adapter.notifyDataSetChanged();
+				}
+			});
+	alertDialog.show();
 			break;
 
 		default:

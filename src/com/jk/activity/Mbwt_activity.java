@@ -58,8 +58,12 @@ public class Mbwt_activity extends Activity{
 					Toast.makeText(Mbwt_activity.this, "认证成功！", Toast.LENGTH_LONG).show();
 					Intent objIntent = new Intent(Mbwt_activity.this,xgmm_activity.class);
 					startActivity(objIntent);
+					finish();
 				}
-				finish();
+				else{
+					Toast.makeText(Mbwt_activity.this, "密保问题输入不正确！", Toast.LENGTH_LONG).show();
+				}
+				
 			}
 		});
 		

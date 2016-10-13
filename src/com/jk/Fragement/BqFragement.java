@@ -2,9 +2,12 @@ package com.jk.Fragement;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -35,7 +38,7 @@ public class BqFragement extends Fragment {
 	private int position;
 
 	private MyAdapter adapter;
-	private int op = 0;
+	public int op;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,7 +69,8 @@ public class BqFragement extends Fragment {
 				// TODO 自动生成的方法存根
 				FlagDAO flagDAO = new FlagDAO(getActivity());
 				Tb_flag tb_flag = data.get(position);
-				Intent objIntent = new Intent(getActivity(), bq_bj_content_activity.class);
+				Intent objIntent = new Intent(getActivity(),
+						bq_bj_content_activity.class);
 				int id_2 = tb_flag.getid();
 				tb_flag = flagDAO.find(id_2);
 
@@ -124,7 +128,7 @@ public class BqFragement extends Fragment {
 			int id = tb_flag.getid();
 			tb_flag = flagDAO.find(id);
 
-			objIntent.putExtra("id", tb_flag.getid() + "");
+			objIntent.putExtra("id", id + "");
 
 			objIntent.putExtra("Flag", tb_flag.getFlag());
 			objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -134,12 +138,38 @@ public class BqFragement extends Fragment {
 
 		case 2:// 删除
 
-			flagDAO.deleteById(tb_flag.getid() + "");
-			Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_LONG).show();
+			AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+					.create();
+			alertDialog.setIcon(R.drawable.key);
+			alertDialog.setTitle("系统提示：");
+			alertDialog.setMessage("是否删除？");
+			alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
+					new OnClickListener() {
 
-			data.remove(position);
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							// TODO Auto-generated method stub
 
-			adapter.notifyDataSetChanged();
+						}
+					});
+			alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
+					new OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							// TODO Auto-generated method stub
+
+							// flagDAO.deleteById(tb_flag.getid() + "");
+							Toast.makeText(getActivity(), "33",
+									Toast.LENGTH_LONG).show();
+
+							// data.remove(position);
+
+							adapter.notifyDataSetChanged();
+						}
+					});
+			alertDialog.show();
+
 			break;
 
 		default:

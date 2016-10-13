@@ -105,7 +105,7 @@ public class Xz_info_zc_activity extends Activity implements
 					Die(je, sj, bz, editdate, zcbc, qx, lx, spinner);
 
 					finish();
-					System.exit(0);
+					
 				} else {
 					Toast.makeText(Xz_info_zc_activity.this, "金额不能为空!",
 							Toast.LENGTH_LONG).show();

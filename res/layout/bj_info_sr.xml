@@ -132,7 +132,9 @@
                     android:padding="5dip"
                     android:scrollbars="vertical"
                     android:textColorHint="#AAAAAA"
-                    android:textSize="15dip" >
+                    android:textSize="15dip" 
+                    android:gravity="top">
+                    
                 </EditText>
             </LinearLayout>
 

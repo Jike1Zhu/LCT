@@ -135,6 +135,7 @@ public class MainActivity extends FragmentActivity {
 		flayout.removeAllViews();
 
 		ZcFragement zc = new ZcFragement();
+		zc.op = 1;
 		getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
 
 	}
@@ -146,6 +147,7 @@ public class MainActivity extends FragmentActivity {
 		flayout.removeAllViews();
 
 		SrFragement sr = new SrFragement();
+		sr.op = 2;
 		getFragmentManager().beginTransaction().add(R.id.flayout, sr).commit();
 	}
 
@@ -157,6 +159,7 @@ public class MainActivity extends FragmentActivity {
 		flayout.removeAllViews();
 
 		BqFragement second = new BqFragement();
+		second.op = 3;
 		getFragmentManager().beginTransaction().add(R.id.flayout, second)
 				.commit();
 

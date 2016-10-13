@@ -2,8 +2,11 @@ package com.jk.Fragement;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -27,11 +30,6 @@ import com.patrickstar.slidingmenudemo.R;
 
 public class ZcFragement extends Fragment {
 
-	
-
-
-
-	
 	private View mView;
 	private ListView lv_show;
 	private Button btn_tj;
@@ -42,13 +40,13 @@ public class ZcFragement extends Fragment {
 	private Button zcbc;
 	private MyAdapter adapter;
 	private LinearLayout zc_bg;
-	
+	public int op;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		
+
 		if (mView == null) {
 			initView(inflater, container);
 		}
@@ -72,8 +70,7 @@ public class ZcFragement extends Fragment {
 		lv_show.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 		lv_show.setOnCreateContextMenuListener(this);
-		
-		
+
 	}
 
 	@Override
@@ -90,22 +87,20 @@ public class ZcFragement extends Fragment {
 		position = info.position;
 	}
 
-	
-	
-
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
-		//Toast.makeText(getActivity(), "asdas", Toast.LENGTH_LONG).show();
-		if(lv_show != null){
-		lv_show.setAdapter(null);
-		OutaccountDAO outinfo = new OutaccountDAO(getActivity());
-		data = outinfo.getScrollData(0, (int) outinfo.getCount());// getData();
-		adapter = new MyAdapter(getActivity());
-		lv_show.setAdapter(adapter);
+		// Toast.makeText(getActivity(), "asdas", Toast.LENGTH_LONG).show();
+		if (lv_show != null) {
+			lv_show.setAdapter(null);
+			OutaccountDAO outinfo = new OutaccountDAO(getActivity());
+			data = outinfo.getScrollData(0, (int) outinfo.getCount());// getData();
+			adapter = new MyAdapter(getActivity());
+			lv_show.setAdapter(adapter);
 		}
 		super.onResume();
 	}
+
 	/**
 	 * 长按之后的按钮事件
 	 */
@@ -126,27 +121,52 @@ public class ZcFragement extends Fragment {
 
 			tb_outaccount = outaccountDAO.find(id);
 
-			objIntent.putExtra("id", tb_outaccount.getid() + "");
+			objIntent.putExtra("id", id + "");
 
 			objIntent.putExtra("Money", tb_outaccount.getMoney() + "");
 			objIntent.putExtra("Time", tb_outaccount.getTime());
 			objIntent.putExtra("Type", tb_outaccount.getType());
 			objIntent.putExtra("Address", tb_outaccount.getAddress());
 			objIntent.putExtra("Depict", tb_outaccount.getMark());
-			
+
 			objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			startActivity(objIntent);
 
 			break;
 
 		case 2:// 删除
+			AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+					.create();
+			alertDialog.setIcon(R.drawable.key);
+			alertDialog.setTitle("系统提示：");
+			alertDialog.setMessage("是否删除？");
+			alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
+					new OnClickListener() {
 
-			outaccountDAO.deleteById(tb_outaccount.getid() + "");
-			Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_LONG).show();
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							// TODO Auto-generated method stub
 
-			data.remove(position);
+						}
+					});
+			alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
+					new OnClickListener() {
 
-			adapter.notifyDataSetChanged();
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							// TODO Auto-generated method stub
+
+							// outaccountDAO.deleteById(tb_outaccount.getid() +
+							// "");
+							Toast.makeText(getActivity(), "11",
+									Toast.LENGTH_LONG).show();
+
+							// data.remove(position);
+
+							adapter.notifyDataSetChanged();
+						}
+					});
+			alertDialog.show();
 			break;
 
 		default:
@@ -155,8 +175,6 @@ public class ZcFragement extends Fragment {
 
 		return super.onContextItemSelected(item);
 	}
-
-
 
 	// ViewHolder静态类
 	static class ViewHolder {
@@ -222,7 +240,7 @@ public class ZcFragement extends Fragment {
 			}
 			Tb_outaccount tb_outaccount = data.get(position);
 			holder.tv_type.setText(tb_outaccount.getType());
-			holder.tv_money.setText("￥-"+tb_outaccount.getMoney() + "");
+			holder.tv_money.setText("￥-" + tb_outaccount.getMoney() + "");
 			holder.tv_data.setText(tb_outaccount.getTime());
 
 			return convertView;

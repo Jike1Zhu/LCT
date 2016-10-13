@@ -28,7 +28,7 @@ public class Xz_info_sr_activity extends Activity implements
 
 	private Spinner spinner;
 	private ArrayAdapter<String> adapter;
-	private static final String[] m = { "还信用卡", "生活开支", "娱乐活动", "送礼", "其他" };
+	private static final String[] m = { "工资", "奖金", "红包", "绩效", "其他" };
 
 	private EditText editdate;
 	private Button zcbc, qx;
@@ -103,7 +103,7 @@ public class Xz_info_sr_activity extends Activity implements
 					Die(je, sj, bz, editdate, zcbc, qx, lx, spinner);
 
 					finish();
-					System.exit(0);
+					
 				}
 
 			}

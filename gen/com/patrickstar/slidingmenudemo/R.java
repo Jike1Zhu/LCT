@@ -36,13 +36,14 @@ public final class R {
         public static final int dl=0x7f020009;
         public static final int fm=0x7f02000a;
         public static final int ic_launcher=0x7f02000b;
-        public static final int left=0x7f02000c;
-        public static final int nr=0x7f02000d;
-        public static final int sr=0x7f02000e;
-        public static final int tc=0x7f02000f;
-        public static final int ttt=0x7f020010;
-        public static final int xt=0x7f020011;
-        public static final int zc=0x7f020012;
+        public static final int key=0x7f02000c;
+        public static final int left=0x7f02000d;
+        public static final int nr=0x7f02000e;
+        public static final int sr=0x7f02000f;
+        public static final int tc=0x7f020010;
+        public static final int ttt=0x7f020011;
+        public static final int xt=0x7f020012;
+        public static final int zc=0x7f020013;
     }
     public static final class id {
         public static final int LL_1=0x7f080004;
@@ -50,7 +51,7 @@ public final class R {
         public static final int LL_3=0x7f08000a;
         public static final int LL_4=0x7f08000d;
         public static final int Spinner01=0x7f08000c;
-        public static final int action_settings=0x7f080036;
+        public static final int action_settings=0x7f080037;
         public static final int bc=0x7f080011;
         public static final int bq_item=0x7f080015;
         public static final int bq_lv=0x7f080014;
@@ -69,15 +70,16 @@ public final class R {
         public static final int img_tc=0x7f080024;
         public static final int img_xt=0x7f080022;
         public static final int img_zc=0x7f080019;
-        public static final int item1=0x7f080037;
-        public static final int item2=0x7f080038;
+        public static final int item1=0x7f080038;
+        public static final int item2=0x7f080039;
         public static final int je=0x7f080005;
         public static final int ll_bq=0x7f08001e;
         public static final int ll_sr=0x7f08001b;
         public static final int ll_xt=0x7f080021;
         public static final int ll_zc=0x7f080018;
         public static final int login=0x7f08002a;
-        public static final int lv_show=0x7f080030;
+        public static final int lv_show=0x7f080036;
+        public static final int lv_show_sr=0x7f080030;
         public static final int lx=0x7f08000b;
         public static final int mb_bc=0x7f080034;
         public static final int mb_tj=0x7f08002f;

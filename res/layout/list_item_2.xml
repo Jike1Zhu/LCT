@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
            	android:textSize="18sp"
            	android:gravity="center"
-            android:text="111" />
+             />
     </LinearLayout>
 
     <LinearLayout
@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="18sp"
-            android:text="2222" 
+           
             android:textColor="#FF4040"/>
     </LinearLayout>
 
@@ -53,7 +53,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="12sp"
-            android:text="3333" />
+           />
     </LinearLayout>
     
     

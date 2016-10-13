@@ -62,7 +62,7 @@
             android:layout_height="1dp"
             android:background="#DCDCDC" >
         </View>
-      <ListView android:id="@+id/lv_show"
+      <ListView android:id="@+id/lv_show_sr"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
          >
