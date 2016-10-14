@@ -48,7 +48,7 @@
                     android:id="@+id/edit_srje"
                     android:layout_width="200dp"
                     android:layout_height="45dp"
-                    android:background="@drawable/bg_edittext"
+                    android:background="@xml/bg_edittext"
                     android:hint="请输入金额"
                     android:inputType="number"
                     android:maxLines="1"
@@ -75,7 +75,7 @@
                     android:id="@+id/et_rqsj"
                     android:layout_width="200dp"
                     android:layout_height="45dp"
-                    android:background="@drawable/bg_edittext"
+                    android:background="@xml/bg_edittext"
                     android:hint="点我选择时间"
                     android:inputType="textMultiLine"
                     android:maxLines="1"
@@ -125,7 +125,7 @@
                     android:id="@+id/et_bz"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edittext"
+                    android:background="@xml/bg_edittext"
                     android:enabled="true"
                     android:hint="备注,选填"
                     android:inputType="textMultiLine"
@@ -150,14 +150,14 @@
                     android:id="@+id/qx"
                     android:layout_width="150dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/btn"
+                    android:background="@xml/allbtn_bg_selector"
                     android:text="取消" />
 
                 <Button
                     android:id="@+id/bc"
                     android:layout_width="150dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/btn"
+                    android:background="@xml/allbtn_bg_selector"
                     android:text="保存" />
             </LinearLayout>
         </LinearLayout>

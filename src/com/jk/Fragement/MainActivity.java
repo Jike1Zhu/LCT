@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,13 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jk.Fragement.ZcFragement.MyAdapter;
 import com.jk.ZDYImgview.CustomDialog;
 import com.jk.activity.Bj_info_sr_activity;
 import com.jk.activity.Bj_info_zc_activity;
 import com.jk.activity.Xz_info_sr_activity;
 import com.jk.activity.Xz_info_zc_activity;
-import com.jk.activity.alertdialog_activity;
 import com.jk.activity.bq_bj_content_activity;
 import com.jk.activity.bq_content_activity;
 import com.jk.dao.FlagDAO;
@@ -71,6 +67,7 @@ public class MainActivity extends FragmentActivity {
 
 		flayout = (FrameLayout) findViewById(R.id.flayout);
 		img_btn = (View) findViewById(R.id.img_btn);
+		
 		flayout.removeAllViews();
 
 		ZcFragement zc = new ZcFragement();
@@ -241,50 +238,64 @@ public class MainActivity extends FragmentActivity {
 
 		case 2:// 删除
 			//Toast.makeText(MainActivity.this, position1, 100).show();
-			if(op == 1){
-				OutaccountDAO outinfo = new OutaccountDAO(MainActivity.this);
-				data1 = outinfo.getScrollData(0, (int) outinfo.getCount());
-				Tb_outaccount tb_outaccount = data1.get(position1);
-				
-				outinfo.deleteById(tb_outaccount.getid() +"");
-				
-			}else if(op == 2){
-				InaccountDAO objInaccountDAO = new InaccountDAO(MainActivity.this);
-				data2 = objInaccountDAO.getScrollData(0, (int) objInaccountDAO.getCount());
-				Tb_inaccount Tb_inaccount = data2.get(position2);
-				objInaccountDAO.deleteById(Tb_inaccount.getid()+ "");
-			}else if(op == 3){
+			CustomDialog.Builder builder = new CustomDialog.Builder(MainActivity.this);
+			builder.setMessage("确定要删除这条信息吗？");
+			builder.setTitle("提示");
+			builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					if(op == 1){
+						OutaccountDAO outinfo = new OutaccountDAO(MainActivity.this);
+						data1 = outinfo.getScrollData(0, (int) outinfo.getCount());
+						Tb_outaccount tb_outaccount = data1.get(position1);
+						
+						outinfo.deleteById(tb_outaccount.getid() +"");
 
-				FlagDAO flagDAO = new FlagDAO(MainActivity.this);
-				data3 = flagDAO.getScrollData(0, (int) flagDAO.getCount());
-				Tb_flag tb_flag = data3.get(position3);
-				flagDAO.deleteById(tb_flag.getid() + "");
-			}
-			
-			Intent intent =	new Intent(MainActivity.this,alertdialog_activity.class);
-			intent.putExtra("op", op);
-			startActivity(intent);
-			
-			/*Builder bundle = new AlertDialog.Builder(MainActivity.this);
-			bundle.setTitle("提示：");
-			bundle.setMessage("确定要关闭吗？");
-			bundle.setPositiveButton("确定",
-					new DialogInterface.OnClickListener() {
+						
+						//刷新
+						flayout.removeAllViews();
+						ZcFragement zc = new ZcFragement();
+						
+						getFragmentManager().beginTransaction().add(R.id.flayout, zc).commit();
+						
+					}else if(op == 2){
+						InaccountDAO objInaccountDAO = new InaccountDAO(MainActivity.this);
+						data2 = objInaccountDAO.getScrollData(0, (int) objInaccountDAO.getCount());
+						Tb_inaccount Tb_inaccount = data2.get(position2);
+						objInaccountDAO.deleteById(Tb_inaccount.getid()+ "");
+						flayout.removeAllViews();
 
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							OutaccountDAO outinfo = new OutaccountDAO(MainActivity.this);
-							data1 = outinfo.getScrollData(0, (int) outinfo.getCount());
-							Tb_outaccount tb_outaccount = data1.get(position1);
-							
-							outinfo.deleteById(tb_outaccount.getid() +"");
-							
-							
-							
+						SrFragement sr = new SrFragement();
+						
+						getFragmentManager().beginTransaction().add(R.id.flayout, sr).commit();
+					}else if(op == 3){
+
+						FlagDAO flagDAO = new FlagDAO(MainActivity.this);
+						data3 = flagDAO.getScrollData(0, (int) flagDAO.getCount());
+						Tb_flag tb_flag = data3.get(position3);
+						flagDAO.deleteById(tb_flag.getid() + "");
+						
+						flayout.removeAllViews();
+
+						BqFragement second = new BqFragement();
+						
+						getFragmentManager().beginTransaction().add(R.id.flayout, second)
+								.commit();
+					}
+					dialog.dismiss();
+				}
+			});
+
+			builder.setNegativeButton("取消",
+					new android.content.DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
 						}
 					});
-			bundle.setNegativeButton("取消", null);
-			bundle.create().show();*/
+
+			builder.create().show();
+			
+			
+			
 			break;
 
 		default:
@@ -295,6 +306,12 @@ public class MainActivity extends FragmentActivity {
 
 	}
 
+	
+	public void showAlertDialog() {
+
+		
+
+	}
 	@Override
 	protected void onStart() {
 		super.onStart();

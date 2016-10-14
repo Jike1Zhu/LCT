@@ -64,7 +64,7 @@
                 android:id="@+id/mbda"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_edittext"
+                android:background="@xml/bg_edittext"
                 android:padding="5dip"
                 android:textColorHint="#AAAAAA"
                 android:textSize="15dip" />
@@ -75,7 +75,7 @@
             android:layout_width="150dp"
             android:layout_height="80dp"
             android:layout_marginTop="50dp"
-            android:background="@drawable/btn"
+            android:background="@xml/allbtn_bg_selector"
             android:text="提交" />
     </LinearLayout>
 
