@@ -30,6 +30,13 @@
             android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
+            android:name="com.jk.activity.alertdialog_activity"
+           
+           
+           android:theme="@style/Dialog">
+
+        </activity>
+        <activity
             android:name="com.jk.activity.Xz_info_sr_activity"
             android:launchMode="singleInstance" 
             android:windowSoftInputMode="adjustPan">

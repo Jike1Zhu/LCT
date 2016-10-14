@@ -23,10 +23,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jk.Fragement.ZcFragement.MyAdapter;
+import com.jk.ZDYImgview.CustomDialog;
 import com.jk.activity.Bj_info_sr_activity;
 import com.jk.activity.Bj_info_zc_activity;
 import com.jk.activity.Xz_info_sr_activity;
 import com.jk.activity.Xz_info_zc_activity;
+import com.jk.activity.alertdialog_activity;
 import com.jk.activity.bq_bj_content_activity;
 import com.jk.activity.bq_content_activity;
 import com.jk.dao.FlagDAO;
@@ -43,6 +46,8 @@ import com.patrickstar.slidingmenudemo.R;
  */
 
 public class MainActivity extends FragmentActivity {
+
+	
 
 	private TextView tv_zcgl;
 	private Button btnSecond;
@@ -127,8 +132,7 @@ public class MainActivity extends FragmentActivity {
 		
 			InaccountDAO objInaccountDAO = new InaccountDAO(MainActivity.this);
 			data2 = objInaccountDAO.getScrollData(0, (int) objInaccountDAO.getCount());
-			 Toast.makeText(MainActivity.this, data2.size()+"",
-			 Toast.LENGTH_LONG).show();
+			
 		
 			FlagDAO flagDAO = new FlagDAO(MainActivity.this);
 			data3 = flagDAO.getScrollData(0, (int) flagDAO.getCount());
@@ -136,6 +140,7 @@ public class MainActivity extends FragmentActivity {
 
 	}
 
+	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -148,11 +153,11 @@ public class MainActivity extends FragmentActivity {
 		// 得到长按的position
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		if(op == 1){
-			position1 = info.position;
+			this.position1 = info.position;
 		}else if(op == 2){
-			position2 = info.position;
+			this.position2 = info.position;
 		}else if(op == 3){
-			position3 = info.position;
+			this.position3 = info.position;
 		}
 		
 		
@@ -166,18 +171,18 @@ public class MainActivity extends FragmentActivity {
 		switch (item.getItemId()) {
 		case 1:// 编辑
 				// 1. 显示更新的Dialog
-
+			
 			if (op == 1) {
 				objIntent = new Intent(MainActivity.this,
 						Bj_info_zc_activity.class);
-				OutaccountDAO outaccountDAO = new OutaccountDAO(
-						MainActivity.this);
 				
+				OutaccountDAO outinfo = new OutaccountDAO(MainActivity.this);
+				data1 = outinfo.getScrollData(0, (int) outinfo.getCount());
 				Tb_outaccount tb_outaccount = data1.get(position1);
 				
 				int id = tb_outaccount.getid();
 
-				tb_outaccount = outaccountDAO.find(id);
+				tb_outaccount = outinfo.find(id);
 
 				objIntent.putExtra("id", id + "");
 
@@ -190,17 +195,18 @@ public class MainActivity extends FragmentActivity {
 				// objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivity(objIntent);
 			} else if (op == 2) {
-				InaccountDAO InaccountDAO = new InaccountDAO(MainActivity.this);
-
 				
+
+				InaccountDAO objInaccountDAO = new InaccountDAO(MainActivity.this);
+				data2 = objInaccountDAO.getScrollData(0, (int) objInaccountDAO.getCount());
 				Tb_inaccount Tb_inaccount = data2.get(position2);
 				
-				Toast.makeText(MainActivity.this, position2+"", Toast.LENGTH_LONG).show();
-				/*objIntent = new Intent(MainActivity.this,Bj_info_sr_activity.class);
+				
+				objIntent = new Intent(MainActivity.this,Bj_info_sr_activity.class);
 
 				int id = Tb_inaccount.getid();
 
-				Tb_inaccount = InaccountDAO.find(id);
+				Tb_inaccount = objInaccountDAO.find(id);
 
 				objIntent.putExtra("id", id + "");
 
@@ -210,11 +216,13 @@ public class MainActivity extends FragmentActivity {
 
 				objIntent.putExtra("Depict", Tb_inaccount.getMark());
 				// objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(objIntent);*/
+				startActivity(objIntent);
 			} else if (op == 3) {
-				FlagDAO flagDAO = new FlagDAO(MainActivity.this);
+				
 
-				/*Tb_flag tb_flag = data3.get(position);
+				FlagDAO flagDAO = new FlagDAO(MainActivity.this);
+				data3 = flagDAO.getScrollData(0, (int) flagDAO.getCount());
+				Tb_flag tb_flag = data3.get(position3);
 				objIntent = new Intent(MainActivity.this,bq_bj_content_activity.class);
 
 				int id = tb_flag.getid();
@@ -224,16 +232,40 @@ public class MainActivity extends FragmentActivity {
 
 				objIntent.putExtra("Flag", tb_flag.getFlag());
 				//objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(objIntent);*/
+				startActivityForResult(objIntent, 11);
 			}
 
-			// Toast.makeText(getActivity(),id +"____"+ tb_outaccount.getid(),
-			// Toast.LENGTH_LONG).show();
+			
 
 			break;
 
 		case 2:// 删除
-			Builder bundle = new AlertDialog.Builder(MainActivity.this);
+			//Toast.makeText(MainActivity.this, position1, 100).show();
+			if(op == 1){
+				OutaccountDAO outinfo = new OutaccountDAO(MainActivity.this);
+				data1 = outinfo.getScrollData(0, (int) outinfo.getCount());
+				Tb_outaccount tb_outaccount = data1.get(position1);
+				
+				outinfo.deleteById(tb_outaccount.getid() +"");
+				
+			}else if(op == 2){
+				InaccountDAO objInaccountDAO = new InaccountDAO(MainActivity.this);
+				data2 = objInaccountDAO.getScrollData(0, (int) objInaccountDAO.getCount());
+				Tb_inaccount Tb_inaccount = data2.get(position2);
+				objInaccountDAO.deleteById(Tb_inaccount.getid()+ "");
+			}else if(op == 3){
+
+				FlagDAO flagDAO = new FlagDAO(MainActivity.this);
+				data3 = flagDAO.getScrollData(0, (int) flagDAO.getCount());
+				Tb_flag tb_flag = data3.get(position3);
+				flagDAO.deleteById(tb_flag.getid() + "");
+			}
+			
+			Intent intent =	new Intent(MainActivity.this,alertdialog_activity.class);
+			intent.putExtra("op", op);
+			startActivity(intent);
+			
+			/*Builder bundle = new AlertDialog.Builder(MainActivity.this);
 			bundle.setTitle("提示：");
 			bundle.setMessage("确定要关闭吗？");
 			bundle.setPositiveButton("确定",
@@ -241,11 +273,18 @@ public class MainActivity extends FragmentActivity {
 
 						@Override
 						public void onClick(DialogInterface arg0, int arg1) {
-
+							OutaccountDAO outinfo = new OutaccountDAO(MainActivity.this);
+							data1 = outinfo.getScrollData(0, (int) outinfo.getCount());
+							Tb_outaccount tb_outaccount = data1.get(position1);
+							
+							outinfo.deleteById(tb_outaccount.getid() +"");
+							
+							
+							
 						}
 					});
 			bundle.setNegativeButton("取消", null);
-			bundle.create().show();
+			bundle.create().show();*/
 			break;
 
 		default:

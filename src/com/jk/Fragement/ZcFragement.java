@@ -31,15 +31,19 @@ import com.patrickstar.slidingmenudemo.R;
 
 public class ZcFragement extends Fragment {
 
+	
+
+	
+
 	private View mView;
-	private ListView lv_show;
+	public ListView lv_show;
 	private Button btn_tj;
 	private List<Tb_outaccount> data;
 	private TextView tv_rqsj;
 	private int position;
 	private Button btn_bc;
 	private Button zcbc;
-	private MyAdapter adapter;
+	public MyAdapter adapter;
 	private LinearLayout zc_bg;
 	
 
@@ -71,6 +75,7 @@ public class ZcFragement extends Fragment {
 		adapter = new MyAdapter(getActivity());
 		lv_show.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
+		
 		lv_show.setOnCreateContextMenuListener(this);
 
 	}
@@ -185,6 +190,7 @@ public class ZcFragement extends Fragment {
 	}*/
 
 	// ViewHolder静态类
+	
 	static class ViewHolder {
 		public TextView tv_type;
 		public TextView tv_money;
@@ -199,6 +205,7 @@ public class ZcFragement extends Fragment {
 			// 根据context上下文加载布局，这里的是Demo17Activity本身，即this
 			this.mInflater = LayoutInflater.from(context);
 		}
+		
 
 		@Override
 		public int getCount() {
